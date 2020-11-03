@@ -24,10 +24,10 @@ export default function Login(props) {
         const response = await loginService(email, password);
 
         if (response.key) {
-            handleAuth(response.key);
+
             console.log("success", response.key);
         }
-        if (response.non_field_errors) {
+        else {
             console.log("failed to login", response.non_field_errors);
         }
     };
