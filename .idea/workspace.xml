@@ -2,11 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="61e5d93f-cc01-4e3c-b208-713f7634d990" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/pages/wm_chat/Index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/wm_constants/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/pages/wm_services/signUpService.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/wm_auth/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/wm_auth/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/wm_services/errorHandler.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/wm_services/errorHandler.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/wm_services/loginService.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/wm_services/loginService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/wm_auth/SignUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/wm_auth/SignUp.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +66,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604389124129</updated>
-      <workItem from="1604389125284" duration="3278000" />
+      <workItem from="1604389125284" duration="10088000" />
     </task>
     <servers />
   </component>
