@@ -1,8 +1,8 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import loginService from "../wm_services/loginService";
 
 export default function Login(props) {
-    const {handleAuth} = props;
+    const { handleAuth } = props;
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -36,7 +36,7 @@ export default function Login(props) {
             <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
                 Email:{" "}
                 <div className="mb-4">
-                    <input type="text" name="email" value={email} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                    <input type="text" name="email" value={email} onChange={handleChange} className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
                 </div>
                 Password:{" "}
                 <input
@@ -46,9 +46,9 @@ export default function Login(props) {
                     value={password}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
-                <br/>
-                <br/>
-                <input type="submit" value="Login" onClick={handleLogin}/>
+                <br />
+                <br />
+                <input type="submit" value="Login" onClick={handleLogin} />
             </form>
         </div>
 
