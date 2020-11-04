@@ -1,0 +1,72 @@
+#registerForm button{
+    display: block;
+    margin: 0 auto;
+    width: 90vw;
+    color: #34529E;
+    border: 1px solid white;
+    background-color: white;
+    margin-top: 5vh;
+    height: 40px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 3px; 
+    font-weight: 700;
+}
+#registerForm p{
+    text-align: left;
+    left: 5vw;
+    position: relative;
+    color: white;
+    /* font-family: Montserrat; */
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: 2.5vh;
+    margin-bottom: 7px;
+}
+#registerForm input {
+    width: 90vw;
+    height: 40px;
+    /* font-family: Montserrat; */
+    font-weight: 300;
+    font-size: 10px;
+    padding: 10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    background-color: transparent;
+    color: white;
+}
+#registerForm input:focus {
+    outline: none
+}
+#registerForm select {
+    width: 90vw;
+    height: 40px;
+    font-weight: 300;
+    font-size: 10px;
+    padding: 6px;
+    border: 1px solid white;
+    border-radius: 2px;
+    background-color: transparent;
+    color: white;
+}
+#registerForm select:focus {
+    outline: none;
+}
+#register-create-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    position: absolute;
+    left: 22vw;
+    bottom: 4vh;
+}
+#register-create-wrapper p {
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+}
+#register-create-wrapper a {
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 8px;
+}
