@@ -1,0 +1,96 @@
+#login-wrapper {
+    width: 100%;
+    position: fixed;
+    background-image: url('../../../assets/images/login/Loginbg.png');
+    height: 100%;
+    font-family: Montserrat;
+}
+#login-welcometext {
+    /* font-family: Montserrat; */
+    text-align: left;
+    padding-left: 5vw;
+    color: white;
+    font-size: 15px;
+}
+#login-welcometext p {
+    font-weight: 400;
+}
+#login-welcometext p span {
+    font-weight: 600;
+}
+#login-input {
+    margin-top: 10vh;
+}
+#login-input p{
+    text-align: left;
+    left: 5vw;
+    position: relative;
+    color: white;
+    /* font-family: Montserrat; */
+    font-weight: 600;
+    font-size: 12px;
+    margin-top: 7vh;
+    margin-bottom: 7px;
+}
+#login-email {
+    width: 90vw;
+    height: 40px;
+    /* font-family: Montserrat; */
+    font-weight: 300;
+    font-size: 10px;
+    padding: 10px;
+    border: 1px solid #FFFFFF;
+    border-radius: 2px;
+    background-color: transparent;
+    color: white;
+}
+#login-email:focus {
+    outline: none;
+}
+#login-btn-wrapper input{
+    display: block;
+    margin: 0 auto;
+    width: 90vw;
+    color: #34529E;
+    border: 1px solid white;
+    background-color: white;
+    margin-top: 5vh;
+    height: 40px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 3px; 
+    font-weight: 700;
+}
+#login-btn-wrapper input:focus{
+    outline: none;
+}
+#login-btn-wrapper a {
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+}
+#login-btn-wrapper a p {
+    margin-top: 12px;
+}
+#login-create-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    position: absolute;
+    left: 15vw;
+    bottom: 8vh;
+}
+#login-create-wrapper p {
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+}
+#login-create-wrapper a button{
+    background: #B3995B;
+    border-radius: 3px;
+    height: 40px;
+    width: 93px;
+    color: white;
+    font-weight: 600;
+    font-size: 14px;
+    margin-left: 8px;
+}

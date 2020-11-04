@@ -5,14 +5,9 @@ import {
     isBrowser,
     isMobile
 } from "react-device-detect";
+import { Link } from 'react-router-dom';
 import logo from '../../assets/Logo.png'
 import './styles/index.css'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 
 export default class Landing extends React.Component {
     render() {
@@ -30,18 +25,16 @@ export default class Landing extends React.Component {
                             <div id='landing-heading'>
                                 <h1>Welcome To Whip Music</h1>
                             </div>
-                            <Router>
-                                <div id='landing-btn-wrapper'>
-                                    <Link to='/Login'>
-                                        <button className='bg-blue-500'>LOGIN</button>
-                                    </Link>
-                                    <button className='bg-blue-500'>REGISTER</button>
-                                </div>
-                            </Router>
+                            <div id='landing-btn-wrapper'>
+                                <Link to='/Login'>
+                                    <button className='bg-blue-500'>LOGIN</button>
+                                </Link>
+                                <button className='bg-blue-500'>REGISTER</button>
+                            </div>
                             {/*  */}
                         </div>
                     </div>
-                </MobileView>
+                </MobileView >
             </>
         )
     }
