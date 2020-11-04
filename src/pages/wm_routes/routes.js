@@ -4,6 +4,8 @@ import Login from '../wm_auth/Login';
 import Landing from '../wm_landing/index';
 import Error from './error';
 import SignUp from '../wm_auth/SignUp';
+import ResetPassword from '../wm_auth/resetPassword';
+import ResetPasswordSuccess from '../wm_auth/resetPasswordSuccess';
 
 export default function RoutingWM() {
     return (
@@ -12,6 +14,8 @@ export default function RoutingWM() {
                 <Route exact path='/' component={Landing} />
                 <Route path='/Login' component={Login} />
                 <Route path='/register' component={SignUp} />
+                <Route path='/resetPassword' component={ResetPassword} />
+                <Route path='/resetPasswordSuccess' component={ResetPasswordSuccess} />
                 <Route component={Error} />
             </Switch>
         </Router>

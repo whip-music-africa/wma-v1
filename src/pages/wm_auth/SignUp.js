@@ -47,7 +47,7 @@ const SignUp = (props) => {
                         <p><span>Welcome to Whip Music Africa</span></p>
                     </div>
                     <Formik
-                        initialValues={{ email: '', password: '', country: '' }}
+                        initialValues={{ email: '', password: '', country: '', name: '' }}
                         validate={values => {
                             const errors = {};
                             if (!values.email) {
