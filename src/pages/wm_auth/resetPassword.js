@@ -16,7 +16,7 @@ export default function ResetPassword() {
                         <h1>Reset Password</h1>
                         <p>Enter your email address to get the link to reset your password</p>
                     </div>
-                    <div id='login-input'>
+                    <div id='reset-input'>
                         <input id='login-email' placeholder='Email address' />
                     </div>
                     <div id='reset-btn-wrapper'>
