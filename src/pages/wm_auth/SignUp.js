@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BrowserView, MobileView } from 'react-device-detect';
 import { countryConstants } from "../wm_constants";
-import signUpService from "../wm_services/signUpService";
-import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { CountryDropdown } from 'react-country-region-selector';
+// import signUpService from "../wm_services/signUpService";
+import { Formik, Form, Field } from 'formik';
+// import { CountryDropdown } from 'react-country-region-selector';
 import logo from '../../assets/Logo.png'
 import './styles/register.css'
 import { Link } from 'react-router-dom'
@@ -48,7 +48,7 @@ class SignUp extends React.Component {
     //     setUser({ ...user, [name]: value })
     // }
     render() {
-        const { username, email, password1, password2 } =
+        const { username, email, password1 } =
             this.state;
         return (
             <>
@@ -58,7 +58,7 @@ class SignUp extends React.Component {
                         <div id='login-wrapper'>
                             <div id='overlay'>
                                 <div id='logo-wrapper'>
-                                    <img src={logo} id='landing-logo' />
+                                    <img alt="WHIP MUSIC AFRICA" src={logo} id='landing-logo' />
                                 </div>
                                 <div id='login-welcometext'>
                                     <p><span>Welcome to Whip Music Africa</span></p>
@@ -100,7 +100,7 @@ class SignUp extends React.Component {
                                             <Field onChange={this.onChange} value={email} placeholder='Input your email address' type="email" name="email" />
                                             {/* <ErrorMessage name="email" component="div" /> */}
                                             <p>Password</p>
-                                            <Field placeholder='Input your password' onChange={this.onChange} value={password1, password2} type="password" name="password" />
+                                            <Field placeholder='Input your password' onChange={this.onChange} value={password1} type="password" name="password" />
                                             {/* <ErrorMessage name="password" component="div" /> */}
                                             <button type="submit" disabled={isSubmitting}>
                                                 CONTINUE

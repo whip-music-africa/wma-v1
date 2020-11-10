@@ -1,8 +1,7 @@
 import React from 'react';
 import './App.css';
-import Landing from './pages/wm_landing/index';
 import RoutingWM from './pages/wm_routes/routes'
-import Alerts from './pages/wm_services/alertService';
+// import Alerts from './pages/wm_services/alertService';
 import { loadUser } from './pages/wm_actions/auth';
 import store from './pages/wm_store/store'
 import { Provider } from 'react-redux';

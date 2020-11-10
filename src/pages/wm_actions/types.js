@@ -6,3 +6,5 @@ export const USER_LOADING = "USER_LOADING";
 export const USER_LOADED = "USER_LOADED";
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const CREATE_MESSAGES = "CREATE_MESSAGES";
+export const GET_POSTS = 'GET_POSTS';
+export const CONNECTION_REQUESTS = 'CONNECTION_REQUESTS';

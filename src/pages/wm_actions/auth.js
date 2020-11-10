@@ -9,6 +9,7 @@ export const loadUser = () => (dispatch, getState) => {
 
     // Get token from state
     const key = getState().auth.key;
+    console.log(key);
 
     // Headers
     const config = {
@@ -19,16 +20,18 @@ export const loadUser = () => (dispatch, getState) => {
 
     // If token, add to headers config
     if (key) {
-        config.headers["Authorization"] = `token ${key}`;
-    }
+        config.headers["Authorization"] = `Token ${key}`
+    };
 
-    axios.get('https://api.whipafrica.com/v1/auth/user', config)
+    axios
+        .get("https://api.whipafrica.com/v1/users/me/", config)
         .then(res => {
             dispatch({
                 type: USER_LOADED,
                 payload: res.data
             });
-        }).catch(err => {
+        })
+        .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: AUTH_ERROR
@@ -49,7 +52,7 @@ export const login = (email, password) => (dispatch) => {
     const body = JSON.stringify({ email, password });
 
     axios
-        .post("https://api.whipafrica.com/v1/auth/login", body, config)
+        .post("https://api.whipafrica.com/v1/auth/login/", body, config)
         .then(res => {
             dispatch({
                 type: LOGIN_SUCCESS,
