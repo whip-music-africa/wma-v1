@@ -1,0 +1,56 @@
+.post-wrapper {
+    padding-top: 50px;
+}
+.root {
+    max-width: 345px;
+}
+.media {
+    height: 0;
+    padding-top: '56.25%';
+}
+.expand {
+    transform: 'rotate(0deg)';
+    margin-left: 'auto';
+    /* transition: theme.transitions.create('transform', {
+        duration: theme.transitions.duration.shortest,
+    }) */
+}
+.expandOpen {
+    transform: 'rotate(180deg)';
+}
+.avatar {
+    background-color: red;
+}
+.MuiCardHeader-title {
+    text-align: left;
+    font-size: 11px !important;
+    font-family: Montserrat !important;
+    font-weight: 600 !important;
+}
+.MuiCardHeader-subheader {
+    text-align: left;
+    font-size: 8px !important;
+    font-family: Montserrat !important;
+    font-weight: 500 !important;
+    text-transform: capitalize !important;
+}
+.textPostContent {
+    text-align: left;
+    font-family: Montserrat !important;
+    font-weight: 500 !important;
+}
+.MuiTypography-body1 {
+    font-size: 10px !important;
+}
+#reaction-wrapper {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    margin-left: 16.6px;
+}
+
+.reactions {
+    width: 40px;
+    height: 40px;
+}

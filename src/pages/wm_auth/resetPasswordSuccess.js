@@ -9,7 +9,7 @@ export default function ResetPasswordSuccess() {
             <MobileView>
                 <div id='reset-password-wrapper'>
                     <div id='reset-logo-wrapper'>
-                        <img src={logo} id='reset-logo' />
+                        <img alt='WHIP MUSIC AFRICA' src={logo} id='reset-logo' />
                     </div>
                     <div id='reset-heading'>
                         <h1>Reset Password</h1>

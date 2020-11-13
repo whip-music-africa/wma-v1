@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { returnErrors } from './messages'
-import { LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR, USER_LOADED, USER_LOADING } from './types';
+import { LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR, USER_LOADED, USER_LOADING, REGISTER_FAIL, REGISTER_SUCCESS } from './types';
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
@@ -9,6 +9,7 @@ export const loadUser = () => (dispatch, getState) => {
 
     // Get token from state
     const key = getState().auth.key;
+    console.log(key);
 
     // Headers
     const config = {
@@ -19,16 +20,18 @@ export const loadUser = () => (dispatch, getState) => {
 
     // If token, add to headers config
     if (key) {
-        config.headers["Authorization"] = `token ${key}`;
-    }
+        config.headers["Authorization"] = `Token ${key}`
+    };
 
-    axios.get('https://api.whipafrica.com/v1/auth/user', config)
+    axios
+        .get("https://api.whipafrica.com/v1/users/me/", config)
         .then(res => {
             dispatch({
                 type: USER_LOADED,
                 payload: res.data
             });
-        }).catch(err => {
+        })
+        .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: AUTH_ERROR
@@ -49,7 +52,7 @@ export const login = (email, password) => (dispatch) => {
     const body = JSON.stringify({ email, password });
 
     axios
-        .post("https://api.whipafrica.com/v1/auth/login", body, config)
+        .post("https://api.whipafrica.com/v1/auth/login/", body, config)
         .then(res => {
             dispatch({
                 type: LOGIN_SUCCESS,
@@ -63,3 +66,37 @@ export const login = (email, password) => (dispatch) => {
             })
         })
 }
+// REGISTER USER
+export const register = ({ email, name, country, password1, password2 }) => dispatch => {
+
+    // Headers 
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    // Request Body 
+    const body = JSON.stringify({ email, name, country, password1, password2 });
+
+    axios
+        .post("https://api.whipafrica.com/v1/auth/registration/", body, config)
+        .then(res => {
+            dispatch({
+                type: REGISTER_SUCCESS,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({
+                type: REGISTER_FAIL
+            })
+        })
+}
+
+// PATCH UPDATE THE PROFILE PROFESSION 
+// export const profession = ({profession, genre});
+
+// axios
+//     .patch("https://api.whipafrica.com/v1/")

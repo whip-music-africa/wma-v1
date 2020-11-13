@@ -2,21 +2,25 @@
     width: 100%;
     position: fixed;
     background-image: url('../../../assets/images/login/Loginbg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 100%;
     font-family: Montserrat;
 }
 #login-welcometext {
-    /* font-family: Montserrat; */
+    font-family: Montserrat;
     text-align: left;
-    padding-left: 5vw;
+    padding-left: 8vw;
     color: white;
     font-size: 15px;
+    margin-top: 5vh;
 }
 #login-welcometext p {
     font-weight: 400;
 }
 #login-welcometext p span {
     font-weight: 600;
+    margin-left: 0;
 }
 #login-input {
     margin-top: 10vh;

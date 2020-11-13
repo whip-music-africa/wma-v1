@@ -11,6 +11,20 @@
     border-radius: 3px; 
     font-weight: 700;
 }
+#register-welcometext {
+    font-family: Montserrat;
+    text-align: left;
+    padding-left: 8vw;
+    color: white;
+    font-size: 15px;
+}
+#register-welcometext p {
+    font-weight: 400;
+}
+#register-welcometext p span {
+    font-weight: 600;
+    margin-left: 0;
+}
 #registerForm p{
     text-align: left;
     left: 5vw;
@@ -57,7 +71,7 @@
     align-items: baseline;
     position: absolute;
     left: 22vw;
-    bottom: 4vh;
+    bottom: 3vh;
 }
 #register-create-wrapper p {
     color: white;
@@ -69,4 +83,72 @@
     font-weight: 600;
     font-size: 14px;
     margin-left: 8px;
+}
+#login-btn-wrapper input{
+    display: block;
+    margin: 0 auto;
+    width: 90vw;
+    color: #34529E;
+    border: 1px solid white;
+    background-color: white;
+    margin-top: 3vh;
+    height: 40px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.25);
+    border-radius: 3px; 
+    font-weight: 700;
+}
+#login-btn-wrapper input:focus{
+    outline: none;
+}
+#login-btn-wrapper a {
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+}
+#login-btn-wrapper a p {
+    margin-top: 12px;
+}
+.modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh,
+}
+.paper {
+    background-color: white;
+    border: 2px solid orange;
+    width: 90vw;
+    height: 60vh;
+}
+.paper h2 {
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 11px;
+}
+.paper p {
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 15px;
+    text-align: center;
+    margin-top: 20px;
+}
+.paper  img {
+    width: 50%;
+    margin: 0 auto;
+    padding-top: 47px;
+}
+.paper a {
+    background-color: #34529E;
+    border-radius: 5px;
+    width: 60%;
+    display: flex;
+    align-self: center;
+    margin: 0 auto;
+    justify-content: center;
+    color: white;
+    padding-top:12px;
+    padding-bottom:12px;
+    margin-top: 13px;
 }
