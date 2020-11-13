@@ -14,8 +14,8 @@ export default function Navbar() {
         <>
             <div className='navbar'>
                 <Link to='#' className='menu-bars'>
-                    <img src={hamburger} onClick={showSidebar} />
-                    <img src={logo} className='toplogo' />
+                    <img alt='' src={hamburger} onClick={showSidebar} />
+                    <img alt='' src={logo} className='toplogo' />
                     <div></div>
                 </Link>
             </div>
@@ -23,10 +23,10 @@ export default function Navbar() {
                 <ul className='nav-menu-items'>
                     <li className='navbar-toggle'>
                         <Link to='#' className='side-logo'>
-                            <img src={logo} />
+                            <img alt='' src={logo} />
                             <BiChevronLeft className='chevronleft' onClick={showSidebar} />
                         </Link>
-                        {/* <img src={hamburger} onClick={showSidebar} /> */}
+                        {/* <img alt='' src={hamburger} onClick={showSidebar} /> */}
                     </li>
                     {SidebarData.map((item, index) => {
                         return (

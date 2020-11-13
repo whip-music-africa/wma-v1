@@ -13,7 +13,7 @@
     left: 0;
     background-color: rgba(52, 82, 158, 0.9);
 }
-#logo-wrapper {
+/* #logo-wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -24,6 +24,18 @@
     width: 44vw;
     height: 40vw;
     margin-top: 2vh ;
+} */
+#logo-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    height: 31vw;
+}
+#landing-logo {
+    position: absolute;
+    width: 28vw;
+    height: 28vw;
+    margin-top: 2vh;
 }
 #landing-heading {
     color: white;

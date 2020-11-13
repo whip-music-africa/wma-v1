@@ -1,9 +1,8 @@
 import React from "react";
 import { BrowserView, MobileView } from "react-device-detect";
-// import loginService from "../wm_services/loginService";
 import './styles/login.css';
-import logo from '../../assets/Logo.png'
-import { Link, Redirect } from 'react-router-dom'
+import logo from '../../assets/images/sidebar/logo.png';
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login } from '../wm_actions/auth';

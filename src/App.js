@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import RoutingWM from './pages/wm_routes/routes'
-// import Alerts from './pages/wm_services/alertService';
+import Alerts from './pages/wm_services/alertService';
 import { loadUser } from './pages/wm_actions/auth';
 import store from './pages/wm_store/store'
 import { Provider } from 'react-redux';
@@ -11,7 +11,9 @@ import AlertTemplate from 'react-alert-template-basic';
 // Alert Options
 const alertOptions = {
     timeout: 3000,
-    position: 'top center'
+    position: 'top center',
+    type: 'success',
+    containerStyle: { fontSize: 10, zIndex: 3 }
 }
 
 class App extends React.Component {
@@ -24,6 +26,7 @@ class App extends React.Component {
                 <AlertProvider template={AlertTemplate} {...alertOptions}>
                     <div className="App">
                         <header className="App-header">
+                            <Alerts />
                             <RoutingWM />
                         </header>
                     </div>

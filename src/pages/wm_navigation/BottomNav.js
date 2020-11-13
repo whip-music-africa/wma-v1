@@ -11,23 +11,23 @@ export default function BottomNav() {
     return (
         <div className='btmNav-wrapper'>
             <Link to='/'>
-                <img src={Home} />
+                <img alt='' src={Home} />
                 <p>Home</p>
             </Link>
             <Link to='browse' id='browse-wrap'>
-                <img id='browseimg' src={Browse} />
+                <img alt='' id='browseimg' src={Browse} />
                 <p>Browse</p>
             </Link>
             <Link>
-                <img src={Share} />
+                <img alt='' src={Share} />
                 <p>Share</p>
             </Link>
             <Link to='/connect'>
-                <img src={Connect} />
+                <img alt='' src={Connect} />
                 <p>Connect</p>
             </Link>
             <Link>
-                <img src={Chat} />
+                <img alt='' src={Chat} />
                 <p>Chat</p>
             </Link>
         </div>

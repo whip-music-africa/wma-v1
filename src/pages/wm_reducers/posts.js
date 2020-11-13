@@ -1,10 +1,11 @@
-import { GET_ERRORS, GET_POSTS } from '../wm_actions/types';
+import { GET_POSTS, NUMBER_OF_LIKES } from '../wm_actions/types';
 
 
 const initialState = {
     something: 'text',
     key: localStorage.getItem("key"),
-    posts: []
+    posts: [],
+    likes: null
 };
 
 export default function (state = initialState, action) {
@@ -13,6 +14,11 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 posts: action.payload
+            }
+        case NUMBER_OF_LIKES:
+            return {
+                ...state,
+                likes: action.payload
             }
         default:
             return state;

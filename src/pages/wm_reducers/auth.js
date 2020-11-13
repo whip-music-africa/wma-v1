@@ -1,8 +1,9 @@
-import { AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADING, USER_LOADED } from '../wm_actions/types';
+import { AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADING, USER_LOADED, REGISTER_SUCCESS, REGISTER_FAIL } from '../wm_actions/types';
 
 const initialState = {
     key: localStorage.getItem("key"),
     isAuthenticated: null,
+    registerSuccessful: true,
     isLoading: false,
     user: null,
 };
@@ -29,9 +30,18 @@ export default function (state = initialState, action) {
                 isAuthenticated: true,
                 isLoading: false,
             }
-
+        case REGISTER_SUCCESS:
+            localStorage.setItem('key', action.payload.key);
+            return {
+                ...state,
+                ...action.payload,
+                registerSuccessful: true,
+                isLoading: false,
+                isAuthenticated: true,
+            }
         case AUTH_ERROR:
         case LOGIN_FAIL:
+        case REGISTER_FAIL:
             localStorage.removeItem("key");
             return {
                 ...state,
@@ -39,6 +49,7 @@ export default function (state = initialState, action) {
                 user: null,
                 isAuthenticated: false,
                 isLoading: false,
+                // registerSuccessful: false,
             };
         default:
             return state;

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { returnErrors } from './messages'
-import { LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR, USER_LOADED, USER_LOADING } from './types';
+import { LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR, USER_LOADED, USER_LOADING, REGISTER_FAIL, REGISTER_SUCCESS } from './types';
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
@@ -66,3 +66,37 @@ export const login = (email, password) => (dispatch) => {
             })
         })
 }
+// REGISTER USER
+export const register = ({ email, name, country, password1, password2 }) => dispatch => {
+
+    // Headers 
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    // Request Body 
+    const body = JSON.stringify({ email, name, country, password1, password2 });
+
+    axios
+        .post("https://api.whipafrica.com/v1/auth/registration/", body, config)
+        .then(res => {
+            dispatch({
+                type: REGISTER_SUCCESS,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({
+                type: REGISTER_FAIL
+            })
+        })
+}
+
+// PATCH UPDATE THE PROFILE PROFESSION 
+// export const profession = ({profession, genre});
+
+// axios
+//     .patch("https://api.whipafrica.com/v1/")
