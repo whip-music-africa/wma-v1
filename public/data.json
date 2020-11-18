@@ -1,0 +1,45 @@
+{
+  "menu": {
+    "children": [
+      {
+        "type": "category",
+        "name": "Burgers",
+        "children": [
+          {
+            "type": "item",
+            "name": "Burger 1",
+            "children": [
+              {
+                "name": "Customize",
+                "children": [
+                  {
+                    "type": "ingredient",
+                    "name": "ingredient 1"
+                  },
+                  {
+                    "type": "ingredient",
+                    "name": "ingredient 2"
+                  },
+                  {
+                    "type": "ingredient",
+                    "name": "ingredient 3"
+                  },
+                  {
+                    "type": "ingredient",
+                    "name": "ingredient 4"
+                  },
+                  {
+                    "type": "ingredient",
+                    "name": "ingredient 5"
+                  }
+                ],
+                "min": 2,
+                "max": 4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

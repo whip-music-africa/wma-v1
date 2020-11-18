@@ -1,11 +1,15 @@
-import { AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADING, USER_LOADED, REGISTER_SUCCESS, REGISTER_FAIL } from '../wm_actions/types';
+import { AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADING, USER_LOADED, REGISTER_SUCCESS, REGISTER_FAIL, PROFESSION_UPDATED, GENRE_UPDATED, PROFESSION_UPDATE_FAIL, GENRE_UPDATE_FAIL } from '../wm_actions/types';
 
 const initialState = {
     key: localStorage.getItem("key"),
     isAuthenticated: null,
     registerSuccessful: true,
     isLoading: false,
-    user: null,
+    users: [],
+    profession: [],
+    genre: [],
+    professionUpdate: null,
+    genreUpdate: null,
 };
 
 export default function (state = initialState, action) {
@@ -20,7 +24,21 @@ export default function (state = initialState, action) {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
-                user: action.payload
+                users: action.payload.url,
+                profession: action.payload.profession,
+                genre: action.payload.genre,
+            }
+        case PROFESSION_UPDATED:
+            return {
+                ...state,
+                profession: action.payload.profession,
+                professionUpdate: true,
+            }
+        case GENRE_UPDATED:
+            return {
+                ...state,
+                genre: action.payload.genre,
+                genreUpdate: true,
             }
         case LOGIN_SUCCESS:
             localStorage.setItem('key', action.payload.key);
@@ -38,6 +56,13 @@ export default function (state = initialState, action) {
                 registerSuccessful: true,
                 isLoading: false,
                 isAuthenticated: true,
+            }
+        case PROFESSION_UPDATE_FAIL:
+        case GENRE_UPDATE_FAIL:
+            return {
+                ...state,
+                professionUpdate: false,
+                genreUpdate: false
             }
         case AUTH_ERROR:
         case LOGIN_FAIL:

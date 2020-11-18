@@ -13,7 +13,7 @@ export default function Navbar() {
     return (
         <>
             <div className='navbar'>
-                <Link to='#' className='menu-bars'>
+                <Link to='/' className='menu-bars'>
                     <img alt='' src={hamburger} onClick={showSidebar} />
                     <img alt='' src={logo} className='toplogo' />
                     <div></div>
@@ -22,7 +22,7 @@ export default function Navbar() {
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                 <ul className='nav-menu-items'>
                     <li className='navbar-toggle'>
-                        <Link to='#' className='side-logo'>
+                        <Link to='/' className='side-logo'>
                             <img alt='' src={logo} />
                             <BiChevronLeft className='chevronleft' onClick={showSidebar} />
                         </Link>

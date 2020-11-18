@@ -2,7 +2,6 @@ import { GET_POSTS, NUMBER_OF_LIKES } from '../wm_actions/types';
 
 
 const initialState = {
-    something: 'text',
     key: localStorage.getItem("key"),
     posts: [],
     likes: null

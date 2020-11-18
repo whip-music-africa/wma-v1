@@ -18,7 +18,7 @@ export default function BottomNav() {
                 <img alt='' id='browseimg' src={Browse} />
                 <p>Browse</p>
             </Link>
-            <Link>
+            <Link to='/'>
                 <img alt='' src={Share} />
                 <p>Share</p>
             </Link>
@@ -26,7 +26,7 @@ export default function BottomNav() {
                 <img alt='' src={Connect} />
                 <p>Connect</p>
             </Link>
-            <Link>
+            <Link to='/'>
                 <img alt='' src={Chat} />
                 <p>Chat</p>
             </Link>

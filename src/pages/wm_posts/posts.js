@@ -23,11 +23,10 @@ export class Posts extends Component {
 
     componentDidMount() {
         this.props.getPosts();
-        // this.props.getLikes();
     }
 
     render() {
-
+        const date = new Date(2020-08-13T12:25:21.812535+03:00)
         return (
             <Fragment>
                 <Navbar />
@@ -48,7 +47,6 @@ export class Posts extends Component {
                             <div id='reaction-wrapper'>
                                 <div className='reactions'>
                                     <img alt='' src={like} />
-                                    {/* <p>{likes.count + ' Likes'}</p> */}
                                 </div>
                                 <div className='reactions'>
                                     <img alt='' src={comment} />

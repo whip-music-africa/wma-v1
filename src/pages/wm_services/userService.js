@@ -1,7 +1,7 @@
-import axios from "axios";
-import { allUsersUrl, baseUrl } from "./common";
+// import axios from "axios";
+// import { allUsersUrl, baseUrl } from "./common";
 
-const allUsers = () => {
-    return axios.get(`${baseUrl}${allUsersUrl}`)
+// const allUsers = () => {
+//     return axios.get(`${baseUrl}${allUsersUrl}`)
 
-}
+// }

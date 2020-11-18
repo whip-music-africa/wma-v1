@@ -1,10 +1,9 @@
 import axios from 'axios';
 import { GET_POSTS, NUMBER_OF_LIKES } from './types';
 
-// Get Posts
+// Get Text Posts
 export const getPosts = () => (dispatch, getState) => {
     const key = getState().auth.key;
-    console.log(key);
 
     // Headers
     const config = {

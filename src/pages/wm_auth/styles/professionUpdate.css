@@ -47,39 +47,76 @@
     padding: 4px 6px;
 }  
 
-  input {
-    /* position: absolute; */
-    /* left: -9999px; */
-  }
-  
-  label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    height: 40px;;
-    font-size: 10px;
-    color: #666666;
-    background-color: #E6E2E2;
-    white-space: nowrap;
-    cursor: pointer;
-    user-select: none;
-    transition: background-color .2s, box-shadow .2s;
-    border-radius: 3px;
-  }
-  
-  label::before {
-    content: '';
-    display: block;
+.checkbox-wrapper input {
     position: absolute;
-    transition: background-color .2s;
-  }
-
-  input:checked + label {
-    background-color: #B3995B;
-    color: white;
-  }
+    left: -9999px;
+}
   
-  input:checked + label::before {
-    background-color: #fff;
-  }
+.checkbox-wrapper div label {
+display: flex;
+align-items: center;
+justify-content: center;
+position: relative;
+height: 40px;;
+font-size: 10px;
+color: #666666;
+background-color: #E6E2E2;
+white-space: nowrap;
+cursor: pointer;
+user-select: none;
+transition: background-color .2s, box-shadow .2s;
+border-radius: 3px;
+}
+
+.checkbox-wrapper div label::before {
+content: '';
+display: block;
+position: absolute;
+transition: background-color .2s;
+}
+
+.checkbox-wrapper input:checked + div label {
+background-color: #B3995B;
+color: white;
+}
+
+.checkbox-wrapper input:checked + div label::before {
+background-color: #fff;
+}
+
+
+#cPNextBtn{
+    color: #34529E;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    font-size: 12px;
+    float: right;
+    right: 5vw;
+    position: absolute;
+    bottom: 2vh;
+    background: transparent;
+}
+#back-Icon {
+    position: absolute;
+    top: 2vh;
+    left: 3vw;
+}
+
+#cPCompleteBtn {
+    background: #34529E;
+    box-shadow: 0px 10px 30px rgba(52, 82, 158, 0.25);
+    border-radius: 5px;
+    width: 95%;
+    height: 40px;
+    margin-top: 27px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    /* identical to box height */
+
+    text-align: center;
+
+    color: #FFFFFF;
+}

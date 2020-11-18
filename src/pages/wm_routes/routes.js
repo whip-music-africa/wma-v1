@@ -18,7 +18,7 @@ export default function RoutingWM() {
     return (
         <Router>
             <Switch>
-                <Route exact path='/' component={Home} />
+                <PrivateRoute exact path='/' component={Home} />
                 <Route exact path='/completeProfile' component={professionUpdate} />
                 <Route exact path='/completeProfile2' component={genreUpdate} />
                 <Route path='/connect' component={Connect} />
