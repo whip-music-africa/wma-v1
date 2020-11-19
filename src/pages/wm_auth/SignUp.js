@@ -109,7 +109,7 @@ class SignUp extends React.Component {
                         >
                             <Fade in={true}>
                                 <div className='paper'>
-                                    <img src={Success} />
+                                    <img src={Success} alt='success' />
                                     <h2 id="transition-modal-title">Success</h2>
                                     <p id="transition-modal-description">Check you email address for confirmation link</p>
                                     <Link to='/completeProfile'>Close</Link>

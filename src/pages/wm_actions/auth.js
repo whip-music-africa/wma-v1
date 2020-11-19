@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { professionConstants } from '../wm_constants';
 import { returnErrors } from './messages'
-import { LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR, USER_LOADED, USER_LOADING, REGISTER_FAIL, REGISTER_SUCCESS } from './types';
+import { GENRE_UPDATED, GENRE_UPDATE_FAIL, PROFESSION_UPDATED, LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR, USER_LOADED, USER_LOADING, REGISTER_FAIL, REGISTER_SUCCESS, PROFESSION_UPDATE_FAIL } from './types';
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
@@ -9,7 +10,6 @@ export const loadUser = () => (dispatch, getState) => {
 
     // Get token from state
     const key = getState().auth.key;
-    console.log(key);
 
     // Headers
     const config = {
@@ -28,7 +28,7 @@ export const loadUser = () => (dispatch, getState) => {
         .then(res => {
             dispatch({
                 type: USER_LOADED,
-                payload: res.data
+                payload: res.data.results[0].profile
             });
         })
         .catch(err => {
@@ -38,6 +38,10 @@ export const loadUser = () => (dispatch, getState) => {
             })
         })
 }
+// // GET USER ID
+// export const loadId = () => (dispatch, getState) => {
+//     dispatch({type: USER_LOADING})
+// }
 
 // LOGIN USER
 export const login = (email, password) => (dispatch) => {
@@ -50,7 +54,7 @@ export const login = (email, password) => (dispatch) => {
 
     // Request Body 
     const body = JSON.stringify({ email, password });
-
+    console.log("https://api.whipafrica.com/v1/auth/login/", body, config)
     axios
         .post("https://api.whipafrica.com/v1/auth/login/", body, config)
         .then(res => {
@@ -64,6 +68,7 @@ export const login = (email, password) => (dispatch) => {
             dispatch({
                 type: LOGIN_FAIL
             })
+            console.log(err.response)
         })
 }
 // REGISTER USER
@@ -95,8 +100,61 @@ export const register = ({ email, name, country, password1, password2 }) => disp
         })
 }
 
-// PATCH UPDATE THE PROFILE PROFESSION 
-// export const profession = ({profession, genre});
-
-// axios
-//     .patch("https://api.whipafrica.com/v1/")
+// PATCH UPDATE THE PROFILE PROFESSION
+export const professionUpdateCall = (profession) => (dispatch, getState) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+    const key = getState().auth.key;
+    if (key) {
+        config.headers["Authorization"] = `Token ${key}`
+    };
+    const user = getState().auth.users
+    const body = { profession }
+    console.log(user, body, config)
+    axios
+        .patch(user, body, config)
+        .then(res => {
+            dispatch({
+                type: PROFESSION_UPDATED,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({
+                type: PROFESSION_UPDATE_FAIL
+            })
+        })
+}
+// PATCH UPDATE THE PROFILE GENRE
+export const genreUpdateCall = (genre) => (dispatch, getState) => {
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+    const key = getState().auth.key;
+    if (key) {
+        config.headers["Authorization"] = `Token ${key}`
+    };
+    const user = getState().auth.users
+    const body = { genre }
+    console.log(user, body, config)
+    axios
+        .patch(user, body, config)
+        .then(res => {
+            dispatch({
+                type: GENRE_UPDATED,
+                payload: res.data
+            });
+        })
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({
+                type: GENRE_UPDATE_FAIL
+            })
+        })
+}
