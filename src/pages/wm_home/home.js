@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux'
 import { loadUser } from '../wm_actions/auth';
 import { Redirect } from 'react-router-dom';
-import store from '../wm_store/store';
+import Posts from '../wm_posts/posts';
 
 class Home extends React.Component {
     state = {
@@ -29,9 +29,7 @@ class Home extends React.Component {
         return (
             <div>
                 <Navbar />
-                <div className='home-wrapper'>
-                    <h1> This is the Home Page</h1>
-                </div>
+                <Posts />
                 <BottomNav />
             </div >
         )

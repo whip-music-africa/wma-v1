@@ -4,7 +4,8 @@ import { GET_POSTS, NUMBER_OF_LIKES } from '../wm_actions/types';
 const initialState = {
     key: localStorage.getItem("key"),
     posts: [],
-    likes: null
+    likes: null,
+    isFetching: true
 };
 
 export default function (state = initialState, action) {
@@ -12,7 +13,8 @@ export default function (state = initialState, action) {
         case GET_POSTS:
             return {
                 ...state,
-                posts: action.payload
+                posts: action.payload,
+                isFetching: false
             }
         case NUMBER_OF_LIKES:
             return {

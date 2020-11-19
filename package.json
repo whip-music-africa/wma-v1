@@ -15,6 +15,7 @@
     "react": "^17.0.1",
     "react-alert": "^7.0.2",
     "react-alert-template-basic": "^1.0.0",
+    "react-content-loader": "^5.1.4",
     "react-country-region-selector": "^3.0.1",
     "react-device-detect": "^1.14.0",
     "react-dom": "^17.0.1",
