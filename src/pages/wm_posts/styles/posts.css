@@ -1,5 +1,7 @@
 .post-wrapper {
     padding-top: 50px;
+    margin-bottom: 75px;
+    background-color: #F6F8FB;
 }
 .root {
     max-width: 345px;

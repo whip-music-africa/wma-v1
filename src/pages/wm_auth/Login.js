@@ -6,7 +6,6 @@ import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login, loadUser } from '../wm_actions/auth';
-import store from "../wm_store/store";
 
 class Login extends React.Component {
     state = {
