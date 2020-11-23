@@ -90,3 +90,6 @@
 #loading-internal {
     padding: 20px
 }
+#postProfession {
+    display: flex;
+}

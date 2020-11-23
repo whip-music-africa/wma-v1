@@ -1,6 +1,6 @@
 .connect-wrapper {
     background-color: #F6F8FB;
-    height: 90vh;
+    height: 100%;
     padding-top: 45px;
 }
 #connect-headingbar {
@@ -76,7 +76,7 @@
     width: 66px;
     height: 66px;   
 }
-#music-connect-wraper button {
+#music-connect-button {
     background: #34529E;
     border-radius: 4px;
     padding: 10px 12px 10px 12px;
@@ -130,4 +130,7 @@
 }
 #connection-invite-head {
     padding:16px 16px 16px 0
+}
+#music-connect-subline {
+    height: 8px;
 }
