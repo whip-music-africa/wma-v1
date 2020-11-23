@@ -7,7 +7,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { login, loadUser } from '../wm_actions/auth';
 import store from "../wm_store/store";
-
+import {activateMixpanel} from "../mixpanel";
+import mixpanel from "mixpanel-browser";
+activateMixpanel()
 class Login extends React.Component {
     state = {
         email: "",
@@ -25,6 +27,8 @@ class Login extends React.Component {
         e.preventDefault();
         this.props.login(this.state.email,
             this.state.password);
+        mixpanel.people(this.state.email);
+        // mixpanel.init("")
     };
     onChange = e => this.setState({
         [e.target.name]: e.target.value
