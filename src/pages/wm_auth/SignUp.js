@@ -76,7 +76,7 @@ class SignUp extends React.Component {
                                         <select className="form-control" name="country" type='choice' value={country} onChange={this.onChange}
                                             id="countryConstants">
                                             <option value="">Select country</option>
-                                            {Object.entries(countryConstants).map((k, v) => <option value={k[0]}>{k[1]}</option>)}
+                                            {countryConstants.map(k => <option value={k.id}>{k.name}</option>)}
                                         </select>
                                         <p>Email address</p>
                                         <input value={email} name='email' onChange={this.onChange} placeholder='input your email address' />

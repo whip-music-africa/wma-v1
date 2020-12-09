@@ -1,4 +1,136 @@
 .connect-wrapper {
-    background-color: rgba(229, 229, 229, 0.2);
-    height: 100vh;
+    background-color: #F6F8FB;
+    height: 100%;
+    padding-top: 45px;
+}
+#connect-headingbar {
+    margin-top: 15px;
+    background: #ECECEC;
+    height: 27px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0 10px 0 16px;
+}
+#connect-headingbar p {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 12px;
+}
+#connect-invite-wrap {
+    width: 98%;
+    margin: 0 auto;
+}
+#connection-invite-card {
+    display: flex;
+    justify-content: space-around;
+}
+#connect-invites-btns-wrapper {
+    display: flex;
+    align-items: center;
+}
+#connect-invites-btns {
+    padding: unset;
+    justify-content: space-around;
+    width: 30vw;
+    display: flex;
+}
+#connect-accept-btn {
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    height: 28px;
+    width: 28px;
+}
+#connect-decline-btn {
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    height: 28px;
+    width: 28px;
+}
+#connect-accept-btn svg {
+    fill: #25DA6D;
+    height: 15px;
+}
+#connect-decline-btn svg {
+    fill:#C91212;
+    height: 15px;
+}
+#music-connect-wraper {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 75px;
+}
+#music-connect-avatar {
+    margin: 0 auto;
+    margin-top: 5px;
+    width: 66px;
+    height: 66px;   
+}
+#music-connect-button {
+    background: #34529E;
+    border-radius: 4px;
+    padding: 10px 12px 10px 12px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
+#music-connect-heading {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 12px;
+    line-height: 15px;
+    text-align: center;
+    color: #252525;
+}
+#music-connect-subline {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 11px;
+    text-align: center;
+    color: #666666;
+    margin-bottom: 4px;
+}
+#music-connect-location {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 8px;
+    line-height: 10px;
+    text-align: center;
+    color: #B3995B;
+    margin-bottom: 3px;
+}
+#music-connect-commons {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 9px;
+    line-height: 11px;
+    text-align: center;
+    color: #34529E;
+    margin-bottom: 13px;
+}
+#connection-invite-head {
+    padding:16px 16px 16px 0
+}
+#music-connect-subline {
+    height: 8px;
 }

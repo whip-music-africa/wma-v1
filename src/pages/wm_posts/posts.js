@@ -12,6 +12,7 @@ import like from '../../assets/images/Posts/like.png'
 import comment from '../../assets/images/Posts/comment.png';
 import share from '../../assets/images/Posts/share.png';
 import MyLoader from '../../loader/loader';
+import { professionConstants } from '../wm_constants/index'
 
 
 export class Posts extends Component {
@@ -58,7 +59,25 @@ export class Posts extends Component {
                                     </Avatar>
                                 }
                                 title={post.created_by.name}
-                                subheader={post.created_by.profile.profession[0] + " / " + post.created_by.profile.profession[1] + ', ' + post.created_by.country}
+                                subheader={professionConstants.map(proC => (
+                                    <div>
+                                        <p>
+                                            {
+                                                proC.id === post.created_by.profile.profession[0]
+                                                    ? proC.name
+                                                    : null
+                                            }
+                                        </p>
+                                        <p>
+                                            {
+                                                proC.id === post.created_by.profile.profession[1]
+                                                    ? proC.name
+                                                    : null
+                                            }
+                                        </p>
+                                    </div>
+                                ))}
+                            // {post.created_by.profile.profession[0] + " / " + post.created_by.profile.profession[1] + ', ' + post.created_by.country}
                             />
                             <CardContent id='cardContent'>
                                 <Typography id='textPostContent'>{post.text_body}</Typography>
