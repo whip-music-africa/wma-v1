@@ -7,6 +7,7 @@ import store from './pages/wm_store/store'
 import { Provider } from 'react-redux';
 import { Provider as AlertProvider } from 'react-alert';
 import AlertTemplate from 'react-alert-template-basic';
+import './pages/mixpanel';
 
 // Alert Options
 const alertOptions = {

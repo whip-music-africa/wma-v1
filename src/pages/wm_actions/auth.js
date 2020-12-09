@@ -1,7 +1,14 @@
 import axios from 'axios';
 import { professionConstants } from '../wm_constants';
 import { returnErrors } from './messages'
-import { GENRE_UPDATED, GENRE_UPDATE_FAIL, PROFESSION_UPDATED, LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR, USER_LOADED, USER_LOADING, REGISTER_FAIL, REGISTER_SUCCESS, PROFESSION_UPDATE_FAIL } from './types';
+import { GENRE_UPDATED, GENRE_UPDATE_FAIL, PROFESSION_UPDATED,
+        LOGIN_SUCCESS, LOGIN_FAIL, AUTH_ERROR,
+        USER_LOADED, USER_LOADING,
+        REGISTER_FAIL, REGISTER_SUCCESS, PROFESSION_UPDATE_FAIL } from './types';
+import mixpanel from "mixpanel-browser";
+import {activateMixpanel} from "../mixpanel";
+
+activateMixpanel();
 
 // CHECK TOKEN & LOAD USER
 export const loadUser = () => (dispatch, getState) => {
@@ -45,25 +52,28 @@ export const loadUser = () => (dispatch, getState) => {
 
 // LOGIN USER
 export const login = (email, password) => (dispatch) => {
-    // Headers 
+    // Headers
     const config = {
         headers: {
             "Content-Type": "application/json"
         }
     };
 
-    // Request Body 
+    // Request Body
     const body = JSON.stringify({ email, password });
     console.log("https://api.whipafrica.com/v1/auth/login/", body, config)
     axios
         .post("https://api.whipafrica.com/v1/auth/login/", body, config)
         .then(res => {
+            mixpanel.track("successful login");
             dispatch({
                 type: LOGIN_SUCCESS,
                 payload: res.data
             });
+
         })
         .catch(err => {
+            mixpanel.track("unsuccessful login");
             dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: LOGIN_FAIL
@@ -74,25 +84,27 @@ export const login = (email, password) => (dispatch) => {
 // REGISTER USER
 export const register = ({ email, name, country, password1, password2 }) => dispatch => {
 
-    // Headers 
+    // Headers
     const config = {
         headers: {
             "Content-Type": "application/json"
         }
     };
 
-    // Request Body 
+    // Request Body
     const body = JSON.stringify({ email, name, country, password1, password2 });
 
     axios
         .post("https://api.whipafrica.com/v1/auth/registration/", body, config)
         .then(res => {
+            mixpanel.track("successful registration");
             dispatch({
                 type: REGISTER_SUCCESS,
                 payload: res.data
             });
         })
         .catch(err => {
+            mixpanel.track("unsuccessful registration");
             dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({
                 type: REGISTER_FAIL
