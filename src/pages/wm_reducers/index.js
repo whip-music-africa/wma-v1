@@ -4,6 +4,7 @@ import auth from './auth'
 import messages from './messages'
 import posts from './posts';
 import connects from './connects';
+import profile from './profile';
 
 // import leads from '.'
 export default combineReducers({
@@ -11,5 +12,6 @@ export default combineReducers({
     auth,
     messages,
     posts,
-    connects
+    connects,
+    profile
 });

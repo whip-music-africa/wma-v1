@@ -89,6 +89,19 @@
     color: #FFFFFF;
     margin-bottom: 10px;
 }
+#music-connect-pendingBtn {
+    background: #B2B2B2;
+    border-radius: 4px;
+    padding: 10px 12px 10px 12px;
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 10px;
+}
 #music-connect-heading {
     font-family: Montserrat;
     font-style: normal;

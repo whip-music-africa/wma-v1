@@ -6,6 +6,8 @@ import { Link, Redirect } from 'react-router-dom';
 import { professionUpdateCall } from '../../wm_actions/auth'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import MyLoader from '../../../loader/loader';
+
 
 
 export class professionUpdate extends Component {
@@ -16,6 +18,11 @@ export class professionUpdate extends Component {
     }
     static propTypes = {
         professionUpdate: PropTypes.bool
+    }
+    componentWillMount() {
+        if (this.props.professionUpdate) {
+            return <Redirect to='/completeProfile2' />
+        }
     }
     disabledLimit(id) {
         return (
@@ -36,6 +43,27 @@ export class professionUpdate extends Component {
     render() {
         if (this.props.professionUpdate) {
             return <Redirect to='/completeProfile2' />
+        }
+        if (this.state.profession.length === 1) {
+            return <div id='loading-wrapper'>
+                <div id='loading-internal'>
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                    <MyLoader />
+                </div>
+            </div>
         }
         return (
             <div className='profession-wrapper'>

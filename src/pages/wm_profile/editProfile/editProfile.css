@@ -1,0 +1,29 @@
+#editTopBar {
+    background-color: #34529E;
+    display: flex;
+    align-items:center;
+    height: 50px;
+    padding-left: 13px;
+    width: 100vw;
+    font-family: Montserrat;
+}
+#editTopBar img {
+
+}
+#editTopBar h1 {
+    font-weight: 700;
+    font-size: 13px;
+    color: #ffffff;
+    margin-left: 17.33px;
+}
+#editProfileAppBarTab {
+    color:#34529E;
+    font-family: Montserrat;
+    font-weight: 500;
+    font-size: 10px;
+    text-align: center;
+}
+#editProfileAppBarTab:focus {
+    outline: none;
+}
+#editProfileAppBarTab span{margin: 0 !important;}

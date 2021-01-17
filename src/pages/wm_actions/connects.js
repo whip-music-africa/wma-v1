@@ -8,7 +8,11 @@ import {
     FETCHING_USERS_SUCCESS,
     SENDING_CONNECT_REQUEST,
     SENT_CONNECT_REQUEST,
-    FAILED_CONNECT_REQUEST
+    FAILED_CONNECT_REQUEST,
+    NUMBER_OF_CONNECTS,
+    FETCHING_NUMBER_OF_CONNECTS,
+    FETCHING_SENT_REQUEST,
+    SENT_REQUESTS_RECEIVED
 } from './types';
 import { returnErrors } from './messages'
 import { isLegacyEdge } from 'react-device-detect';
@@ -94,7 +98,7 @@ export const sendRequest = (requestId) => (dispatch, getState) => {
     const config = {
         headers: {
             "Content-Type": "application/json",
-            "Authorization": `Token ${key}`
+            "Authorization": `token ${key}`
         }
     }
 
@@ -105,10 +109,10 @@ export const sendRequest = (requestId) => (dispatch, getState) => {
 
     const requestUrl = JSON.stringify(requestId)
     console.log(requestId)
-    console.log(`https://api.whipafrica.com/v1/connections/users/connectrequests/${requestId}/`, config)
+    console.log(`https://api.whipafrica.com/v1/connections/users/connectrequests/${requestId}/`, {}, config)
 
     axios
-        .post(`https://api.whipafrica.com/v1/connections/users/connectrequests/${requestId}/`, config)
+        .post(`https://api.whipafrica.com/v1/connections/users/connectrequests/${requestId}/`, {}, config)
         .then(res => {
             dispatch({
                 type: SENT_CONNECT_REQUEST,
@@ -120,5 +124,67 @@ export const sendRequest = (requestId) => (dispatch, getState) => {
             dispatch(returnErrors(err.response.data, err.response.status));
             dispatch({ type: FAILED_CONNECT_REQUEST })
             console.log(err.response)
+        })
+}
+export const updateSentRequest = () => (dispatch, getState) => {
+    dispatch({ type: FETCHING_SENT_REQUEST });
+
+    // Get Token from state
+    const key = getState().auth.key
+
+    // Headers
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    // If token, add to headers config
+    if (key) {
+        config.headers["Authorization"] = `Token ${key}`
+    };
+
+    axios.get(`https://api.whipafrica.com/v1/connections/users/connectrequests/pending/`, config)
+        .then(res => {
+            dispatch({
+                type: SENT_REQUESTS_RECEIVED,
+                payload: res.data.results
+            })
+            console.log(res.data)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+// Fetching Number of Connections for a single User
+export const numberOfConnections = () => (dispatch, getState) => {
+
+    // Fetching Number of Connections
+    dispatch({ type: FETCHING_NUMBER_OF_CONNECTS })
+    // Get Token from state
+    const key = getState().auth.key;
+
+    //Headers
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    // If token, add to headers config
+    if (key) {
+        config.headers["Authorization"] = `Token ${key}`
+    };
+
+    axios
+        .get("https://api.whipafrica.com/v1/connections/users/connects/", config)
+        .then(res => {
+            dispatch({
+                type: NUMBER_OF_CONNECTS,
+                payload: res.data.count
+            })
+        })
+        .catch(err => {
+            console.log(err)
         })
 }

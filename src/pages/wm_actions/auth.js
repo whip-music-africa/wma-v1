@@ -28,8 +28,9 @@ export const loadUser = () => (dispatch, getState) => {
         .then(res => {
             dispatch({
                 type: USER_LOADED,
-                payload: res.data.results[0].profile
+                payload: res.data.results
             });
+            console.log(res.data.results)
         })
         .catch(err => {
             dispatch(returnErrors(err.response.data, err.response.status));

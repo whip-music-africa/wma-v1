@@ -1,11 +1,13 @@
-import { GET_POSTS, NUMBER_OF_LIKES } from '../wm_actions/types';
+import { GET_POSTS, NUMBER_OF_LIKES, GET_PERSONAL_POSTS, GET_PERSONAL_VIDEOS } from '../wm_actions/types';
 
 
 const initialState = {
     key: localStorage.getItem("key"),
     posts: [],
     likes: null,
-    isFetching: true
+    isFetching: true,
+    personalPosts: [],
+    personalVideos: []
 };
 
 export default function (state = initialState, action) {
@@ -20,6 +22,16 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 likes: action.payload
+            }
+        case GET_PERSONAL_POSTS:
+            return {
+                ...state,
+                personalPosts: action.payload
+            }
+        case GET_PERSONAL_VIDEOS:
+            return {
+                ...state,
+                personalVideos: action.payload
             }
         default:
             return state;

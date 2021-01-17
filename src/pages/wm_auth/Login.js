@@ -40,11 +40,6 @@ class Login extends React.Component {
                 </BrowserView>
                 <MobileView>
                     <form onSubmit={this.onSubmit}>
-                        {/* {
-                            this.props.genre.map(gen => (
-                                <h1>{gen}</h1>
-                            ))
-                        } */}
                         <div id='login-wrapper'>
                             <div id='overlay'>
                                 <div id='logo-wrapper'>

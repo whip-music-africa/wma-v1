@@ -4,7 +4,7 @@
     background-color: #F6F8FB;
 }
 .root {
-    max-width: 345px;
+    max-width: 95vw;
 }
 .media {
     height: 0;
@@ -59,11 +59,11 @@
     justify-content: left;
     align-items: center;
     width: 100%;
-    margin-left: 16.6px;
+    margin-left: 6.6px;
 }
 
 #reactions {
-    width: 40px;
+    width: 30px;
     height: 40px;
 }
 #loading-wrapper {

@@ -1,0 +1,32 @@
+#postShareBtn {
+    background: #FFFFFF;
+    border-radius: 2px;
+    color: #34529e;
+    padding: 12px 18px;
+    font-weight: 700;
+    font-family: Montserrat;
+    font-size: 10px;
+    position: absolute;
+    right: 12px;
+}
+#sharePostInputSection {
+    display: flex;
+    justify-content:space-around;
+    width: 92vw;
+    align-items: start;
+    margin: 0 auto;
+    padding-top: 13px;
+}
+#postInputContentField {
+    width: 80vw;
+    margin-left: 11px;
+    font-family: Montserrat;
+    font-weight: 400;
+    font-size: 10px;
+    color: #666666;
+    resize: none;
+    padding-top: 12px;
+}
+#postInputContentField:focus {
+    outline: none;
+}

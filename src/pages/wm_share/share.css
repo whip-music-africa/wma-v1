@@ -1,0 +1,91 @@
+#navContainer {
+    position: absolute;
+}
+#shareContainer {
+    padding: 2.5vw;
+    font-family: Montserrat;
+    position:relative;
+    top: 75px;
+}
+#shareContainer h1 {
+    font-weight: 600;
+    font-size: 14px;
+    color:#383838;
+    text-align: left;
+    margin-left: 2.5vw;
+}
+#shareFirstSection {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 95vw;
+    margin-top: 35px;
+}
+#shareVideo {
+    padding: 15vw 16vw;
+    border: 1px solid #34529e;
+    border-radius: 5px;
+}
+#shareVideo img {
+    width: 51.6px;
+    height: 51.6px;
+    margin: 0 auto;
+}
+#shareVideo p {
+    font-weight: 600;
+    font-size: 15px;
+    color: #34529e;
+    margin-top: 20px;
+}
+#sharePhoto {
+    padding: 15.5vw 16vw;
+    border: 1px solid #34529e;
+    border-radius: 5px;
+}
+#sharePhoto img {
+    width: 47.5px;
+    height: 47.5px;
+    margin: 0 auto;
+}
+#sharePhoto p {
+    font-size: 15px;
+    color: #34529e;
+    font-weight: 600;
+    margin-top: 18px;
+}
+#shareSecondSection {
+    display: flex;
+    justify-content: space-around;
+    width: 95vw;
+    margin-top: 17px;
+}
+#sharePost {
+    padding: 15vw 16vw;
+    border: 1px solid #34529e;
+    border-radius: 5px;
+}
+#sharePost img {
+    width: 50px;
+    height: 50px;
+}
+#sharePost p {
+    font-size: 15px;
+    color: #34529e;
+    font-weight: 600;
+    margin-top: 20px;
+}
+#shareGig {
+    padding: 15vw 15.5vw;
+    border: 1px solid #34529e;
+    border-radius: 5px;
+}
+#shareGig img {
+    width: 50px;
+    height: 50px;
+}
+#shareGig p {
+    font-size: 15px;
+    color: #34529e;
+    font-weight: 600;
+    margin-top: 20px;
+}

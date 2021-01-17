@@ -10,7 +10,11 @@ import {
     FETCHING_USERS_SUCCESS,
     SENDING_CONNECT_REQUEST,
     SENT_CONNECT_REQUEST,
-    FAILED_CONNECT_REQUEST
+    FAILED_CONNECT_REQUEST,
+    NUMBER_OF_CONNECTS,
+    FETCHING_NUMBER_OF_CONNECTS,
+    SENT_REQUESTS_RECEIVED,
+    FETCHING_SENT_REQUEST
 } from '../wm_actions/types';
 
 const initialState = {
@@ -20,6 +24,9 @@ const initialState = {
     connectRequests: [],
     allUsers: [],
     sentRequest: null,
+    numberOfConnects: null,
+    sentConnectRequests: null,
+    fetchingSentRequest: false
 };
 
 
@@ -33,6 +40,11 @@ export default function (state = initialState, action) {
                 fetchingRequests: true,
                 sentRequest: false
             }
+        case FETCHING_NUMBER_OF_CONNECTS:
+            return {
+                ...state,
+                numberOfConnects: null
+            }
         case FETCHING_USERS_SUCCESS:
             return {
                 ...state,
@@ -41,11 +53,28 @@ export default function (state = initialState, action) {
                 // connectRequests: action.payload,
                 allUsers: action.payload
             }
+        case FETCHING_SENT_REQUEST:
+            return {
+                ...state,
+                sentConnectRequests: null,
+                fetchingSentRequest: true
+            }
         case CONNECTION_REQUESTS_RECIEVED:
             return {
                 ...state,
                 connectRequests: action.payload,
                 fetchingRequests: false
+            }
+        case NUMBER_OF_CONNECTS:
+            return {
+                ...state,
+                numberOfConnects: action.payload
+            }
+        case SENT_REQUESTS_RECEIVED:
+            return {
+                ...state,
+                sentConnectRequests: action.payload,
+                fetchingSentRequest: false
             }
         case SENT_CONNECT_REQUEST:
             return {

@@ -99,7 +99,7 @@ class SignUp extends React.Component {
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
                             className='modal'
-                            open={true}
+                            open={this.state.open}
                             onClose={this.handleClose}
                             closeAfterTransition
                             BackdropComponent={Backdrop}

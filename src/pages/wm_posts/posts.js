@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getPosts } from '../wm_actions/posts';
+import { getPosts, postTextLike, postImageLike, postVideoLike } from '../wm_actions/posts';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -12,31 +12,40 @@ import like from '../../assets/images/Posts/like.png'
 import comment from '../../assets/images/Posts/comment.png';
 import share from '../../assets/images/Posts/share.png';
 import MyLoader from '../../loader/loader';
-import { professionConstants } from '../wm_constants/index'
+import { professionConstants } from '../wm_constants/index';
+import VideoPlayer from 'react-simple-video-player';
+
 
 
 export class Posts extends Component {
+    state = {
+        postType: '',
+        postId: ''
+    }
     static propTypes = {
         posts: PropTypes.array.isRequired,
         likes: PropTypes.array,
         isFetching: PropTypes.bool
     };
-
+    // componentWillMount() {
+    // }
     componentDidMount() {
         this.props.getPosts();
     }
-
+    // onChange = e => this.setState({
+    //     [e.target.name]: e.target.value
+    // })
+    onSubmit = e => {
+        e.preventDefault();
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+        this.props.postTextLike(this.state.postId);
+    }
     render() {
         if (this.props.isFetching) {
             return <div id='loading-wrapper'>
                 <div id='loading-internal'>
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
                     <MyLoader />
                     <MyLoader />
                     <MyLoader />
@@ -51,7 +60,7 @@ export class Posts extends Component {
         return (
             <Fragment>
                 <div className='post-wrapper'>
-                    {this.props.posts.map(post => (
+                    {this.props.posts.sort((a, b) => (a.created_at < b.created_at) ? -1 : ((a.created_at > b.created_at) ? 1 : 0)).map(post => (
                         <Card className='root' key={post.id}>
                             <CardHeader
                                 avatar={
@@ -77,21 +86,24 @@ export class Posts extends Component {
                                         </p>
                                     </div>
                                 ))}
-                            // {post.created_by.profile.profession[0] + " / " + post.created_by.profile.profession[1] + ', ' + post.created_by.country}
                             />
                             <CardContent id='cardContent'>
                                 <Typography id='textPostContent'>{post.text_body}</Typography>
                                 <img id='ImagePostContent' src={post.image_url} />
+                                {post.hasOwnProperty("video_url") ? <VideoPlayer id='VideoPostContent' url={post.video_url} autosize /> : null}
+                                {/* {console.log(post.hasOwnProperty("video_url"))} */}
                             </CardContent>
                             <div id='reaction-wrapper'>
+                                <form onSubmit={this.onSubmit}>
+                                    <div id='reactions'>
+                                        {post.hasOwnProperty('video_url') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : post.hasOwnProperty('image_url') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : post.hasOwnProperty('text_body') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : null}
+                                    </div>
+                                </form>
                                 <div id='reactions'>
-                                    <img alt='' src={like} />
+                                    <button><img alt='' src={comment} /></button>
                                 </div>
                                 <div id='reactions'>
-                                    <img alt='' src={comment} />
-                                </div>
-                                <div id='reactions'>
-                                    <img alt='' src={share} />
+                                    <button><img alt='' src={share} /></button>
                                 </div>
                             </div>
                         </Card>
@@ -105,4 +117,4 @@ const mapStateToProps = state => ({
     posts: state.posts.posts,
     isFetching: state.posts.isFetching
 })
-export default connect(mapStateToProps, { getPosts })(Posts)
+export default connect(mapStateToProps, { getPosts, postTextLike, postImageLike, postVideoLike })(Posts)

@@ -1,4 +1,84 @@
 .browse-wrapper {
     background-color: rgba(229, 229, 229, 0.2);
     height: 100vh;
+    /* position: relative; */
+    /* top: 100px; */
+    padding: 2.5vw;
+    font-family: Montserrat;
+    /* box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25); */
+}
+.browse-wrapper h1 {
+    margin-top: 80px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 15px;
+    color: #666666;
+}
+#browseBtns {
+    display: flex;
+    justify-content:space-between;
+    width: 95vw;
+    margin: 0 auto;
+    align-items:center;
+    padding-top: 28px;
+}
+#videoBrowseBtn {
+    /* padding: 25px; */
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    height: 15vh;
+    width: 31%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+#videoBrowseBtn a img {
+    margin: 0 auto;
+}
+#videoBrowseBtn a p {
+    font-weight: 600;
+    font-size: 10px;
+    color: #34529e;
+    margin-top: 10px;
+}
+#musicProfessionalBtn {
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    height: 15vh;
+    width: 31%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+#musicProfessionalBtn a img {
+    margin: 0 auto;
+}
+#musicProfessionalBtn a p {
+    font-weight: 600;
+    font-size: 10px;
+    color: #34529e;
+    margin-top: 10px
+}
+#gigsBrowseBtn {
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    -moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.25);
+    height: 15vh;
+    width: 31%;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+}
+#gigsBrowseBtn a img {
+    margin: 0 auto;
+}
+#gigsBrowseBtn a p {
+    font-weight: 600;
+    font-size: 10px;
+    color: #34529e;
+    margin-top: 10px
 }

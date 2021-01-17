@@ -5,66 +5,55 @@ import './connect.css';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography } from '@material-ui/core';
-import { loadRequests, loadUsers, sendRequest } from '../wm_actions/connects';
+import { loadRequests, sendRequest, updateSentRequest } from '../wm_actions/connects';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MyLoader from '../../loader/loader';
 import { professionConstants, countryConstants } from '../wm_constants/index';
 import axios from 'axios'
+import { Link } from 'react-router-dom';
 
+const mergeById = (a1, a2) =>
+    a1.map(itm => ({
+        ...a2.find((item) => (item.receiver === itm.id) && item),
+        ...itm
+    }));
 class Connect extends React.Component {
     state = {
-        requestId: ""
+        requestId: "",
+        merged: []
     }
     static propTypes = {
         areRequests: PropTypes.bool,
         connectRequests: PropTypes.array.isRequired,
         allUsers: PropTypes.array.isRequired,
         fetchingRequests: PropTypes.bool,
+        sentConnectRequests: PropTypes.array.isRequired,
+        fetchingSentRequest: PropTypes.bool.isRequired
     }
     onSubmit = e => {
         e.preventDefault();
         this.props.sendRequest(this.state.requestId);
-        console.log(this.state.requestId)
+        this.props.updateSentRequest();
+        console.log(this.props.updateSentRequest())
     };
-    onChange = e => this.setState({
-        [e.target.name]: e.target.value
-    });
-    // sendRequest = () => {
-    //     const key = '9aff29f7206fbd2cbdb6aee27bde2dddb78a5680';
+    onChange = e => {
+        this.setState({
+            [e.target.name]: e.target.value,
+            merged: mergeById(this.props.allUsers, this.props.sentConnectRequests)
+        })
 
-    //     // Headers
-    //     const config = {
-    //         headers: {
-    //             "Content-Type": "application/json"
-    //         }
-    //     }
-
-    //     // If token, add to headers config
-    //     if (key) {
-    //         config.headers["Authorization"] = `Token ${key}`
-    //     };
-    //     const requestUrl = this.state.requestId
-    //     axios
-    //         .post(`https://api.whipafrica.com/v1/connections/users/connectrequests/${requestUrl}/`, config)
-    //         .then(res => {
-    //             // dispatch({
-    //             //     payload: res.data
-    //             // })
-    //             console.log(res.data)
-    //         })
-    //         .catch(err => {
-    //             console.log(err)
-    //             console.log(key)
-    //         })
-    // }
+    };
     componentDidMount() {
         this.props.loadRequests();
-        this.props.loadUsers();
-        console.log(this.props.key)
-    } s
+        this.setState({
+            merged: mergeById(this.props.allUsers, this.props.sentConnectRequests)
+        })
+        console.log(this.state.merged)
+    }
+
     render() {
-        if (this.props.isFetching) {
+        if (this.props.fetchingSentRequest) {
             return <div id='loading-wrapper'>
                 <div id='loading-internal'>
                     <MyLoader />
@@ -135,44 +124,39 @@ class Connect extends React.Component {
                         <p>Music professionals you may want to connect with</p>
                     </div>
                     <div id='music-connect-wraper'>
-                        {this.props.allUsers.map(user => (
+                        {this.state.merged.map(user => (
                             <form onSubmit={this.onSubmit}>
                                 <Card key={user.id} id='connection-card'>
-                                    <Avatar src={user.profile.avatar} id='music-connect-avatar' />
-                                    <p id='music-connect-heading'>{user.name}</p>
-                                    <p id='music-connect-subline'>
-                                        {professionConstants.map(proC => (
-                                            <p key={proC.id}>
+                                    <Link to={`/profile/${user.id}`}>
+                                        <Avatar src={user.profile.avatar} id='music-connect-avatar' />
+                                        <p id='music-connect-heading'>{user.name}</p>
+                                        <p id='music-connect-subline'>
+                                            {professionConstants.map(proC => (
+                                                <p key={proC.id}>
+                                                    {
+                                                        proC.id === user.profile.profession[0]
+                                                            ? proC.name
+                                                            : null
+                                                    }
+                                                </p>
+                                            ))}
+                                        </p>
+                                        <p key={user.id} id='music-connect-location'>{countryConstants.map(counC => (
+                                            <p>
                                                 {
-                                                    proC.id === user.profile.profession[0]
-                                                        ? proC.name
+                                                    counC.id === user.country
+                                                        ? counC.name
                                                         : null
                                                 }
                                             </p>
-                                        ))}
-                                    </p>
-                                    <p key={user.id} id='music-connect-location'>{countryConstants.map(counC => (
-                                        <p>
-                                            {
-                                                counC.id === user.country
-                                                    ? counC.name
-                                                    : null
-                                            }
-                                        </p>
-                                    ))}</p>
-                                    <p id='music-connect-commons'>10 common connections</p>
-                                    <button value={user.id} name='requestId' id='music-connect-button' type='submit' onClick={this.onChange}>Connect</button>
+                                        ))}</p>
+                                        <p id='music-connect-commons'>10 common connections</p>
+                                    </Link>
+                                    {user.status === 'pending' ? <button value={user.id} name='requestId' id='music-connect-pendingBtn' onClick={this.onChange}>Pending</button> : <button value={user.id} name='requestId' id='music-connect-button' type='submit' onClick={this.onChange}>Connect</button>}
                                 </Card>
                             </form>
                         ))}
                     </div>
-                    {/* {professionConstants.map(cons => (
-                        <div>
-                            <h1 key={cons.id}>
-                                {cons.name}
-                            </h1>
-                        </div>
-                    ))} */}
                 </div>
                 <BottomNav />
             </>
@@ -185,5 +169,7 @@ const mapStateToProps = state => ({
     allUsers: state.connects.allUsers,
     fetchingRequests: state.connects.fetchingRequests,
     requestId: state.connects.requestId,
+    fetchingSentRequest: state.connects.fetchingSentRequest,
+    sentConnectRequests: state.connects.sentConnectRequests,
 })
-export default connect(mapStateToProps, { loadRequests, loadUsers, sendRequest })(Connect);
+export default connect(mapStateToProps, { loadRequests, sendRequest, updateSentRequest })(Connect);

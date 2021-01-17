@@ -10,6 +10,7 @@ const initialState = {
     genre: [],
     professionUpdate: null,
     genreUpdate: null,
+    me: []
 };
 
 export default function (state = initialState, action) {
@@ -24,15 +25,16 @@ export default function (state = initialState, action) {
                 ...state,
                 isAuthenticated: true,
                 isLoading: false,
-                users: action.payload.url,
-                profession: action.payload.profession,
-                genre: action.payload.genre,
+                me: action.payload,
+                users: action.payload[0].profile.url,
+                profession: action.payload[0].profile.profession,
+                genre: action.payload[0].genre,
             }
         case PROFESSION_UPDATED:
             return {
                 ...state,
                 profession: action.payload.profession,
-                professionUpdate: true,
+                professionUpdate: false,
             }
         case GENRE_UPDATED:
             return {
