@@ -41,10 +41,10 @@ export class professionUpdate extends Component {
         this.props.professionUpdateCall(this.state.profession);
     };
     render() {
-        if (this.props.professionUpdate) {
-            return <Redirect to='/completeProfile2' />
-        }
-        if (this.state.profession.length === 1) {
+        // if (this.props.professionUpdate) {
+        //     return <Redirect to='/completeProfile2' />
+        // }
+        if (this.state.profession.length === 0) {
             return <div id='loading-wrapper'>
                 <div id='loading-internal'>
                     <MyLoader />

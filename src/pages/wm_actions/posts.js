@@ -154,7 +154,7 @@ export const getPersonalPosts = () => (dispatch, getState) => {
     if (key) {
         config.headers["Authorization"] = `Token ${key}`
     };
-    axios.get(`https://api.whipafrica.com/v1/posts/feed/image/${userId}/`, config)
+    axios.get(`https://api.whipafrica.com/v1/posts/feed/text/${userId}/`, config)
         .then(res => {
             dispatch({
                 type: GET_PERSONAL_POSTS,
@@ -202,6 +202,7 @@ export const postText = (text_body) => (dispatch, getState) => {
         config.headers["Authorization"] = `Token ${key}`
     };
     const body = JSON.stringify({ text_body })
+    console.log(body, config)
     axios.post(`https://api.whipafrica.com/v1/posts/text/new-text-post/`, body, config)
         .then(res => {
             console.log(res)

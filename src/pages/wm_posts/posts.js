@@ -14,7 +14,7 @@ import share from '../../assets/images/Posts/share.png';
 import MyLoader from '../../loader/loader';
 import { professionConstants } from '../wm_constants/index';
 import VideoPlayer from 'react-simple-video-player';
-
+import { Link } from 'react-router-dom';
 
 
 export class Posts extends Component {
@@ -27,14 +27,9 @@ export class Posts extends Component {
         likes: PropTypes.array,
         isFetching: PropTypes.bool
     };
-    // componentWillMount() {
-    // }
     componentDidMount() {
         this.props.getPosts();
     }
-    // onChange = e => this.setState({
-    //     [e.target.name]: e.target.value
-    // })
     onSubmit = e => {
         e.preventDefault();
         this.setState({
@@ -60,8 +55,9 @@ export class Posts extends Component {
         return (
             <Fragment>
                 <div className='post-wrapper'>
-                    {this.props.posts.sort((a, b) => (a.created_at < b.created_at) ? -1 : ((a.created_at > b.created_at) ? 1 : 0)).map(post => (
+                    {this.props.posts.sort((a, b) => (b.created_at < a.created_at) ? -1 : ((b.created_at > a.created_at) ? 1 : 0)).map(post => (
                         <Card className='root' key={post.id}>
+                            <Link to={`/profile/${post.created_by.id}/`}>
                             <CardHeader
                                 avatar={
                                     <Avatar aria-label='recipe' className='avatar' src={post.created_by.profile.avatar}>
@@ -86,24 +82,23 @@ export class Posts extends Component {
                                         </p>
                                     </div>
                                 ))}
-                            />
+                            /></Link>
                             <CardContent id='cardContent'>
                                 <Typography id='textPostContent'>{post.text_body}</Typography>
                                 <img id='ImagePostContent' src={post.image_url} />
                                 {post.hasOwnProperty("video_url") ? <VideoPlayer id='VideoPostContent' url={post.video_url} autosize /> : null}
-                                {/* {console.log(post.hasOwnProperty("video_url"))} */}
                             </CardContent>
                             <div id='reaction-wrapper'>
                                 <form onSubmit={this.onSubmit}>
                                     <div id='reactions'>
-                                        {post.hasOwnProperty('video_url') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : post.hasOwnProperty('image_url') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : post.hasOwnProperty('text_body') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : null}
+                                        {post.hasOwnProperty('video_url') ? <button name='postId' value={post.id} onClick={this.onChange} id='post-like-btn' type='submit'><img alt='' src={like} /></button> : post.hasOwnProperty('image_url') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit' id='post-like-btn'><img alt='' src={like} /></button> : post.hasOwnProperty('text_body') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit' id='post-like-btn'><img alt='' src={like} /></button> : null}
                                     </div>
                                 </form>
                                 <div id='reactions'>
                                     <button><img alt='' src={comment} /></button>
                                 </div>
                                 <div id='reactions'>
-                                    <button><img alt='' src={share} /></button>
+                                    <button id='post-share-btn'><img alt='' src={share} /></button>
                                 </div>
                             </div>
                         </Card>

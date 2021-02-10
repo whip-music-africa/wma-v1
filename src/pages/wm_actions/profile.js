@@ -1,8 +1,11 @@
 import axios from 'axios';
-import { GET_PROFILE_INFO } from './types';
+import { GET_PROFILE_INFO, GETTING_PROFILE_INFO } from './types';
 
 // Get User Profile Info 
 export const getProfileInfo = (requestId) => (dispatch, getState) => {
+
+    //Resetting Profile Info
+    dispatch({type: GETTING_PROFILE_INFO})
     const key = getState().auth.key;
 
     // Headers

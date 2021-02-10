@@ -57,11 +57,18 @@
 #reaction-wrapper {
     display: flex;
     justify-content: left;
-    align-items: center;
+    align-items: baseline;
     width: 100%;
-    margin-left: 6.6px;
+    margin-left: 10px;
 }
-
+#post-share-btn {
+    position: relative;
+    top: 1.2px;
+}
+#post-like-btn {
+    position: relative;
+    top: 1px;
+}
 #reactions {
     width: 30px;
     height: 40px;

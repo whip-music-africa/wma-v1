@@ -1,4 +1,4 @@
-import { GET_PROFILE_INFO } from '../wm_actions/types'
+import { GET_PROFILE_INFO, GETTING_PROFILE_INFO } from '../wm_actions/types'
 
 const initialState = {
     person: []
@@ -6,6 +6,10 @@ const initialState = {
 
 export default function (state = initialState, action) {
     switch (action.type) {
+        case GETTING_PROFILE_INFO:
+            return {
+                person: []
+            }
         case GET_PROFILE_INFO:
             return {
                 ...state,

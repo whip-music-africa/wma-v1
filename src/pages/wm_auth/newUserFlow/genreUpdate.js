@@ -17,6 +17,11 @@ export class genreUpdate extends Component {
     static propTypes = {
         genreUpdate: PropTypes.bool
     }
+    componentWillMount() {
+        if (this.props.genreUpdate) {
+            return <Redirect to='/' />
+        }
+    }
     disabledLimit(id) {
         return (
             this.state.genre.length > 2 && this.state.genre.indexOf(id) === -1
@@ -34,9 +39,7 @@ export class genreUpdate extends Component {
         this.props.genreUpdateCall(this.state.genre);
     };
     render() {
-        if (this.props.genreUpdate) {
-            return <Redirect to='/' />
-        }
+        
         return (
             <div className='profession-wrapper'>
                 <Link id='back-Icon' to='/completeprofile'>
