@@ -5,11 +5,12 @@ import { SidebarData } from './SidebarData';
 import './styles/Navbar.css'
 import logo from '../../assets/images/sidebar/toplogo.png'
 import { BiChevronLeft } from 'react-icons/bi';
+import onClickOutside from 'react-onclickoutside';
 
-export default function Navbar() {
+function Navbar() {
     const [sidebar, setSidebar] = useState(false);
-
-    const showSidebar = () => setSidebar(!sidebar)
+    const showSidebar = () => setSidebar(!sidebar);
+    Navbar.handleClickOutside = () => setSidebar(false);
     return (
         <>
             <div className='navbar'>
@@ -24,7 +25,7 @@ export default function Navbar() {
                     <li className='navbar-toggle'>
                         <Link className='side-logo'>
                             <img alt='' src={logo} />
-                            <BiChevronLeft className='chevronleft' onClick={showSidebar} />
+                            {/* <BiChevronLeft className='chevronleft' onClick={showSidebar} /> */}
                         </Link>
                         {/* <img alt='' src={hamburger} onClick={showSidebar} /> */}
                     </li>
@@ -43,6 +44,10 @@ export default function Navbar() {
         </>
     )
 }
+const clickOutsideConfig = {
+    handleClickOutside: () => Navbar.handleClickOutside
+  };
+export default onClickOutside(Navbar, clickOutsideConfig)
 export function NavbarConnect() {
     const [sidebar, setSidebar] = useState(false);
 

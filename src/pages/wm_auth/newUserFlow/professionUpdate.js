@@ -9,8 +9,7 @@ import PropTypes from 'prop-types';
 import MyLoader from '../../../loader/loader';
 
 
-
-export class professionUpdate extends Component {
+class professionUpdate extends Component {
     state = {
         profession: '',
         checked: false,
@@ -19,10 +18,12 @@ export class professionUpdate extends Component {
     static propTypes = {
         professionUpdate: PropTypes.bool
     }
-    componentWillMount() {
-        if (this.props.professionUpdate) {
-            return <Redirect to='/completeProfile2' />
-        }
+    async componentDidMount() {
+        console.log('This is the Profession Page');
+        await this.setState({profession: this.props.profession})
+        // if (this.props.professionUpdate) {
+        //     return <Redirect to='/completeProfile2' />
+        // }
     }
     disabledLimit(id) {
         return (
@@ -41,30 +42,13 @@ export class professionUpdate extends Component {
         this.props.professionUpdateCall(this.state.profession);
     };
     render() {
-        // if (this.props.professionUpdate) {
-        //     return <Redirect to='/completeProfile2' />
-        // }
-        if (this.state.profession.length === 0) {
-            return <div id='loading-wrapper'>
-                <div id='loading-internal'>
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                    <MyLoader />
-                </div>
-            </div>
+        if (this.props.professionUpdate) {
+            return <Redirect to='/completeProfile2' />
         }
+        if (this.props.profession.length === 2) {
+            return <Redirect to='/completeProfile2' />
+        }
+            
         return (
             <div className='profession-wrapper'>
                 <img src={completeProfile} id='completeProfile-img' />
@@ -117,4 +101,4 @@ const mapStateToProps = state => ({
     profession: state.auth.profession,
     professionUpdate: state.auth.professionUpdate
 })
-export default connect(mapStateToProps, { professionUpdateCall })(professionUpdate)
+export default connect(mapStateToProps, {professionUpdateCall })(professionUpdate)

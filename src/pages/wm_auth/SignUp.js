@@ -20,7 +20,7 @@ class SignUp extends React.Component {
         country: '',
         password1: '',
         password2: '',
-        open: false
+        open: true
     };
     static propTypes = {
         register: PropTypes.func.isRequired,
@@ -99,7 +99,7 @@ class SignUp extends React.Component {
                             aria-labelledby="transition-modal-title"
                             aria-describedby="transition-modal-description"
                             className='modal'
-                            open={this.state.open}
+                            open={this.props.registerSuccessful}
                             onClose={this.handleClose}
                             closeAfterTransition
                             BackdropComponent={Backdrop}
@@ -141,7 +141,8 @@ class SignUp extends React.Component {
                                         <select className="form-control" name="country" type='choice' value={country} onChange={this.onChange}
                                             id="countryConstants">
                                             <option value="">Select country</option>
-                                            {Object.entries(countryConstants).map((k, v) => <option value={k[0]}>{k[1]}</option>)}
+                                            {/* {Object.entries(countryConstants).map((k, v) => <option value={k[0]}>{k[1]}</option>)} */}
+                                            {countryConstants.map(k => <option value={k.id}>{k.name}</option>)}
                                         </select>
                                         <p>Email address</p>
                                         <input value={email} name='email' onChange={this.onChange} placeholder='input your email address' />
@@ -159,7 +160,7 @@ class SignUp extends React.Component {
                                     </div>
                                 </div>
                             </div>
-                        </form >
+                        </form>
                     </MobileView >
                 </>
             )

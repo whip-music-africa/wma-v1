@@ -14,7 +14,10 @@ import {
     NUMBER_OF_CONNECTS,
     FETCHING_NUMBER_OF_CONNECTS,
     SENT_REQUESTS_RECEIVED,
-    FETCHING_SENT_REQUEST
+    FETCHING_SENT_REQUEST,
+    DELETING_CONNECT_REQUEST,
+    DELETED_CONNECT_REQUEST,
+    MERGED_CONNECT_USERS
 } from '../wm_actions/types';
 
 const initialState = {
@@ -26,7 +29,7 @@ const initialState = {
     sentRequest: null,
     numberOfConnects: null,
     sentConnectRequests: null,
-    fetchingSentRequest: false
+    fetchingSentRequest: false,
 };
 
 
@@ -45,7 +48,7 @@ export default function (state = initialState, action) {
                 ...state,
                 numberOfConnects: null
             }
-        case FETCHING_USERS_SUCCESS:
+        case MERGED_CONNECT_USERS:
             return {
                 ...state,
                 fetchingRequests: false,

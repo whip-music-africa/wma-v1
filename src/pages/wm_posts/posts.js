@@ -30,12 +30,12 @@ export class Posts extends Component {
     componentDidMount() {
         this.props.getPosts();
     }
-    onSubmit = e => {
+    onSubmit = (e, pid) => {
         e.preventDefault();
         this.setState({
             [e.target.name]: e.target.value
         })
-        this.props.postTextLike(this.state.postId);
+        this.props.postTextLike(pid);
     }
     render() {
         if (this.props.isFetching) {

@@ -12,7 +12,10 @@ import {
     NUMBER_OF_CONNECTS,
     FETCHING_NUMBER_OF_CONNECTS,
     FETCHING_SENT_REQUEST,
-    SENT_REQUESTS_RECEIVED
+    SENT_REQUESTS_RECEIVED,
+    DELETED_CONNECT_REQUEST,
+    DELETING_CONNECT_REQUEST,
+    MERGED_CONNECT_USERS
 } from './types';
 import { returnErrors } from './messages'
 import { isLegacyEdge } from 'react-device-detect';
@@ -50,7 +53,43 @@ export const loadRequests = () => (dispatch, getState) => {
             console.log(err)
         })
 }
+// Fetching Connection Users
+export const connectionUsers = () => (dispatch, getState) => {
 
+    // Get Token from state
+    const key = getState().auth.key;
+
+    // Headers
+    const config = {
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }
+
+    // If token, add to headers config
+    if (key) {
+        config.headers["Authorization"] = `Token ${key}`
+    };
+    const mergeById = (a1, a2) =>
+    a1.map(itm => ({
+        ...a2.find((item) => (item.receiver === itm.id) && item),
+        ...itm
+    }));
+    const allConnectUsers = axios.get("https://api.whipafrica.com/v1/users/", config);
+    const sentRequestUsers = axios.get("https://api.whipafrica.com/v1/connections/users/connectrequests/pending/", config)
+    axios.all([allConnectUsers, sentRequestUsers])
+        .then(axios.spread((...responses) => {
+            const allConnectUsersRes = responses[0].data.results
+            const sentRequestUsersRes = responses[1].data.results
+            dispatch({
+                type: MERGED_CONNECT_USERS,
+                payload: mergeById(allConnectUsersRes, sentRequestUsersRes)
+            })
+        }))
+        .catch(err => {
+            console.error(err)
+        })
+}
 // Fetching All Users in the App For Connection Recommendations
 export const loadUsers = () => (dispatch, getState) => {
 
@@ -186,5 +225,47 @@ export const numberOfConnections = () => (dispatch, getState) => {
         })
         .catch(err => {
             console.log(err)
+        })
+}
+
+// Delete Connection /connections/users/connects/disconnect/
+export const deleteConnection = (requestId) => (dispatch, getState) => {
+
+    // Deleting Request State
+    dispatch({ type: DELETING_CONNECT_REQUEST });
+
+    // Get Token from state
+    const key = getState().auth.key
+
+    // Headers
+    const config = {
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `token ${key}`
+        }
+    }
+
+    // If token, add to headers config
+    if (key) {
+        config.headers["Authorization"] = `Token ${key}`
+    };
+
+    const requestUrl = JSON.stringify(requestId)
+    console.log(requestId)
+    console.log(`https://api.whipafrica.com/v1/connections/users/connects/disconnect/${requestId}/`, config)
+
+    axios
+        .delete(`https://api.whipafrica.com/v1/connections/users/connects/disconnect/${requestId}/`, config)
+        .then(res => {
+            dispatch({
+                type: DELETED_CONNECT_REQUEST,
+                payload: res
+            })
+            console.log(res.data)
+        })
+        .catch(err => {
+            dispatch(returnErrors(err.response.data, err.response.status));
+            dispatch({ type: FAILED_CONNECT_REQUEST })
+            console.log(err.response)
         })
 }

@@ -139,6 +139,7 @@ export const postVideoLike = ({ postType, postId }) => (dispatch, getState) => {
         })
         .catch(err => console.log(err))
 }
+// GET PERSONAL POSTS
 export const getPersonalPosts = () => (dispatch, getState) => {
     const key = getState().auth.key;
     const userId = getState().auth.me[0].id

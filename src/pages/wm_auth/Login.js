@@ -5,7 +5,7 @@ import logo from '../../assets/images/sidebar/logo.png';
 import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { login, loadUser } from '../wm_actions/auth';
+import { login  } from '../wm_actions/auth';
 
 class Login extends React.Component {
     state = {
@@ -31,7 +31,7 @@ class Login extends React.Component {
     render() {
         if (this.props.isAuthenticated) {
             return <Redirect to='/' />
-        }
+        } else {
         const { email, password } = this.state;
         return (
             <>
@@ -69,6 +69,7 @@ class Login extends React.Component {
             </>
         );
     }
+    }
 }
 
 const mapStateToProps = state => ({
@@ -78,4 +79,4 @@ const mapStateToProps = state => ({
     genre: state.auth.genre
 })
 
-export default connect(mapStateToProps, { login, loadUser })(Login);
+export default connect(mapStateToProps, { login })(Login);

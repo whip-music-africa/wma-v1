@@ -24,6 +24,11 @@ import edit from '../../assets/images/Profile/edit.png'
 import { Link } from 'react-router-dom';
 import MyPosts from './userProfileComponents/myPosts'
 import MyVideos from './userProfileComponents/myVideos'
+import UserRecommendations from './userProfileComponents/myRecommendations'
+import OtherRatings from './userProfileComponents/otherRatings';
+import { othersRatings } from '../wm_actions/profile'
+
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -54,7 +59,8 @@ TabPanel.propTypes = {
 class Profile extends React.Component {
     state = {
         selected: null,
-        value: 0
+        value: 0,
+        id: ''
     }
     static propTypes = {
         me: PropTypes.array,
@@ -68,6 +74,9 @@ class Profile extends React.Component {
         this.props.getPersonalVideos();
     }
     handleChange = (index) => {
+        this.setState({ value: index })
+    }
+    ratingsFetch = (index) => {
         this.setState({ value: index })
     }
     render() {
@@ -151,8 +160,8 @@ class Profile extends React.Component {
                     </AppBar>
                     <TabPanel value={this.state.value} index={0}><MyPosts /></TabPanel>
                     <TabPanel value={this.state.value} index={1}><MyVideos /></TabPanel>
-                    <TabPanel value={this.state.value} index={2}>This is My Recommendations</TabPanel>
-                    <TabPanel value={this.state.value} index={3}>This is My Ratings</TabPanel>
+                    <TabPanel value={this.state.value} index={2}><UserRecommendations /></TabPanel>
+                    <TabPanel value={this.state.value} index={3}><OtherRatings /></TabPanel>
                 </div>
                 <div><p>
                     {this.state.content}
@@ -170,4 +179,4 @@ const mapStateToProps = state => ({
     getPersonalVideos: state.posts.personalVideos
 })
 
-export default connect(mapStateToProps, { loadUser, numberOfConnections, getPersonalPosts, getPersonalVideos })(Profile)
+export default connect(mapStateToProps, { othersRatings, loadUser, numberOfConnections, getPersonalPosts, getPersonalVideos })(Profile)

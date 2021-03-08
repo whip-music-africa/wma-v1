@@ -1,5 +1,5 @@
 import React from 'react';
-import { getPersonalPosts } from '../../wm_actions/posts';
+import { getUserPosts } from '../../wm_actions/profile';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Card from '@material-ui/core/Card';
@@ -15,36 +15,39 @@ import share from '../../../assets/images/Posts/share.png';
 
 class MyPosts extends React.Component {
     static propTypes = {
-        personalPosts: PropTypes.array,
-        me: PropTypes.array
+        userPosts: PropTypes.array,
+
+        person: PropTypes.array
     }
-    componentWillMount() {
-        this.props.getPersonalPosts()
+    componentDidMount() {
+
     }
     render() {
-        return (
-            <div id='myPostsContainer'>
-                {this.props.personalPosts.sort((a, b) => (b.created_at < a.created_at) ? -1 : ((b.created_at > a.created_at) ? 1 : 0)).map(post => (
-                        <Card className='root' key={post.id}>
-                            {/* <Link to={`/profile/${post.created_by.id}/`}> */}
-                            <CardHeader
+        if (this.props.userPosts == []) {
+            return <div><h1>Loading</h1></div>
+        } else {
+            return (
+                <div>
+                    {this.props.userPosts.results.sort((a, b) => (b.created_at < a.created_at) ? -1 : ((b.created_at > a.created_at) ? 1 : 0)).map(post => (
+                            <Card className='root' key={post.id}>
+                                <CardHeader
                                 avatar={
-                                    <Avatar aria-label='recipe' className='avatar' src={this.props.me[0].profile.avatar}>
+                                    <Avatar aria-label='recipe' className='avatar' src={this.props.person.profile.avatar}>
                                     </Avatar>
                                 }
-                                title={this.props.me[0].name}
+                                title={this.props.person.name}
                                 subheader={professionConstants.map(proC => (
                                     <div>
                                         <p>
                                             {
-                                                proC.id === this.props.me[0].profile.profession[0]
+                                                proC.id === this.props.person.profile.profession[0]
                                                     ? proC.name
                                                     : null
                                             }
                                         </p>
                                         <p>
                                             {
-                                                proC.id === this.props.me[0].profile.profession[1]
+                                                proC.id === this.props.person.profile.profession[1]
                                                     ? proC.name
                                                     : null
                                             }
@@ -52,12 +55,11 @@ class MyPosts extends React.Component {
                                     </div>
                                 ))}
                             />
-                            <CardContent id='cardContent'>
-                                <Typography id='textPostContent'>{post.text_body}</Typography>
-                                <img id='ImagePostContent' src={post.image_url} />
-                                {/* {post.hasOwnProperty("video_url") ? <VideoPlayer id='VideoPostContent' url={post.video_url} autosize /> : null} */}
-                            </CardContent>
-                            <div id='reaction-wrapper'>
+                                <CardContent id='cardContent'>
+                                    <Typography id='textPostContent'>{post.text_body}</Typography>
+                                    <img id='ImagePostContent' src={post.image_url} />
+                                </CardContent>
+                                <div id='reaction-wrapper'>
                                 <form onSubmit={this.onSubmit}>
                                     <div id='reactions'>
                                         {post.hasOwnProperty('video_url') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : post.hasOwnProperty('image_url') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : post.hasOwnProperty('text_body') ? <button name='postId' value={post.id} onClick={this.onChange} type='submit'><img alt='' src={like} /></button> : null}
@@ -70,14 +72,15 @@ class MyPosts extends React.Component {
                                     <button><img alt='' src={share} /></button>
                                 </div>
                             </div>
-                        </Card>
-                    ))}
-            </div>
-        )
+                            </Card>
+                        ))}
+                </div>
+            )
+        }
     }
 }
 const mapStateToProps = state => ({
-    personalPosts: state.posts.personalPosts,
-    me: state.auth.me
+    userPosts: state.profile.userPosts,
+    person: state.profile.person
 })
-export default connect(mapStateToProps, { getPersonalPosts })(MyPosts)
+export default connect(mapStateToProps, { getUserPosts })(MyPosts)

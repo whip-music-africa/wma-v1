@@ -1,0 +1,49 @@
+#menuIconDiv {
+    display: flex;
+    justify-content: flex-end;
+    padding: 5px;
+    position: absolute;
+    right: 0px;
+    top: 92px;
+}
+#menuIconContainer {
+    outline: none;
+}
+.menuVert {
+    position: fixed;
+    bottom: 0px;
+    z-index: 10;
+    background-color:#34529E;
+    color: white;
+    display: grid;
+    width: 100%;
+    padding-bottom: 69px;
+    padding-top: 20px;
+    border-radius: 5px 5px 0 0;
+}
+.menuVert div {
+    text-align: left;
+    margin-left: 22px;
+}
+.menuVert div button {
+    padding-bottom: 10px;
+    padding-top: 10px;
+    outline: none;
+    text-align: left;
+    padding-left: 11px;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 15px;
+    letter-spacing: 0em;
+    width: 70%;
+}
+#createIcon {
+    height: 15px;
+    width: 15px;
+}
+#simple-menu {
+    position:fixed;
+
+}

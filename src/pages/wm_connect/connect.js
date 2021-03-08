@@ -5,7 +5,7 @@ import './connect.css';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { Avatar, Card, CardContent, CardHeader, CardMedia, Typography } from '@material-ui/core';
-import { loadRequests, sendRequest, updateSentRequest } from '../wm_actions/connects';
+import { loadRequests, sendRequest, updateSentRequest, loadUsers,connectionUsers } from '../wm_actions/connects';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import MyLoader from '../../loader/loader';
@@ -21,7 +21,6 @@ const mergeById = (a1, a2) =>
 class Connect extends React.Component {
     state = {
         requestId: "",
-        merged: []
     }
     static propTypes = {
         areRequests: PropTypes.bool,
@@ -44,16 +43,13 @@ class Connect extends React.Component {
         })
 
     };
-    componentDidMount() {
-        this.props.loadRequests();
-        this.setState({
-            merged: mergeById(this.props.allUsers, this.props.sentConnectRequests)
-        })
-        console.log(this.state.merged)
-    }
 
+    async componentDidMount() {
+        await this.props.loadRequests();
+        await this.props.connectionUsers();
+    }
     render() {
-        if (this.props.fetchingSentRequest) {
+        if (this.props.fetching) {
             return <div id='loading-wrapper'>
                 <div id='loading-internal'>
                     <MyLoader />
@@ -82,6 +78,7 @@ class Connect extends React.Component {
                     <div id='connect-headingbar'>
                         <p>Connection invitations</p>
                     </div>
+                    {this.props.connectRequests.map(cReq => (
                     <div id='connect-invite-wrap'>
                         <Card id='connection-invite-card' className='connect-Card-Root'>
                             <CardHeader
@@ -100,7 +97,7 @@ class Connect extends React.Component {
                                 </CardContent>
                             </div>
                         </Card>
-                    </div>
+                    </div>))}
                     <div id='connect-invite-wrap'>
                         <Card id='connection-invite-card' className='connect-Card-Root'>
                             <CardHeader
@@ -124,7 +121,7 @@ class Connect extends React.Component {
                         <p>Music professionals you may want to connect with</p>
                     </div>
                     <div id='music-connect-wraper'>
-                        {this.state.merged.map(user => (
+                        {this.props.allUsers.map(user => (
                             <form onSubmit={this.onSubmit}>
                                 <Card key={user.id} id='connection-card'>
                                     <Link to={`/profile/${user.id}`}>
@@ -172,4 +169,4 @@ const mapStateToProps = state => ({
     fetchingSentRequest: state.connects.fetchingSentRequest,
     sentConnectRequests: state.connects.sentConnectRequests,
 })
-export default connect(mapStateToProps, { loadRequests, sendRequest, updateSentRequest })(Connect);
+export default connect(mapStateToProps, { connectionUsers, loadRequests, sendRequest, updateSentRequest,loadUsers })(Connect);

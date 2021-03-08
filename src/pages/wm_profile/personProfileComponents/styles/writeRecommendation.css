@@ -1,0 +1,23 @@
+#recommendationInput {
+    width: 95%;
+    border: 1px solid #B7B7B7;
+    box-sizing: border-box;
+    border-radius: 2px;
+    font-family: Montserrat;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 12px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding-top: 12px;
+    padding-left: 13px;
+}
+#recommendationSubmit {
+    width: 100px;
+    height: 40px;
+    background: #34529E;
+    border-radius: 3px;
+    text-align: center;
+    color: white;
+}

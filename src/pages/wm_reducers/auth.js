@@ -3,7 +3,7 @@ import { AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADING, USER_LOADED, REGIS
 const initialState = {
     key: localStorage.getItem("key"),
     isAuthenticated: null,
-    registerSuccessful: true,
+    registerSuccessful: false,
     isLoading: false,
     users: [],
     profession: [],
@@ -18,13 +18,13 @@ export default function (state = initialState, action) {
         case USER_LOADING:
             return {
                 ...state,
-                isLoading: true,
+                // isLoading: true,
             }
         case USER_LOADED:
             return {
                 ...state,
-                isAuthenticated: true,
-                isLoading: false,
+                // isAuthenticated: true,
+                // isLoading: false,
                 me: action.payload,
                 users: action.payload[0].profile.url,
                 profession: action.payload[0].profile.profession,
@@ -34,7 +34,7 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 profession: action.payload.profession,
-                professionUpdate: false,
+                professionUpdate: true,
             }
         case GENRE_UPDATED:
             return {
