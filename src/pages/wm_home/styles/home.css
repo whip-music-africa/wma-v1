@@ -2,3 +2,6 @@
     background-color: rgba(229, 229, 229, 0.2);
     height: 100vh;
 }
+#homeWrapper {
+    height: 50vh;
+}

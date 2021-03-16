@@ -34,7 +34,7 @@ class Home extends React.Component {
             return <Redirect to='/completeProfile' />
         }
         return (
-            <div>
+            <div id='homeWrapper'>
                 <Navbar />
                 <Posts />
                 <BottomNav />

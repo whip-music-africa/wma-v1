@@ -47,3 +47,8 @@
     position:fixed;
 
 }
+#recommendationSubmitContainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 8px;
+}

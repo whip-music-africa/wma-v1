@@ -25,7 +25,8 @@ export class Posts extends Component {
     static propTypes = {
         posts: PropTypes.array.isRequired,
         likes: PropTypes.array,
-        isFetching: PropTypes.bool
+        isFetching: PropTypes.bool,
+        me: PropTypes.array
     };
     componentDidMount() {
         this.props.getPosts();
@@ -48,7 +49,6 @@ export class Posts extends Component {
                     <MyLoader />
                     <MyLoader />
                     <MyLoader />
-                    <MyLoader />
                 </div>
             </div>
         }
@@ -57,7 +57,7 @@ export class Posts extends Component {
                 <div className='post-wrapper'>
                     {this.props.posts.sort((a, b) => (b.created_at < a.created_at) ? -1 : ((b.created_at > a.created_at) ? 1 : 0)).map(post => (
                         <Card className='root' key={post.id}>
-                            <Link to={`/profile/${post.created_by.id}/`}>
+                            {this.props.me[0].id == post.created_by.id ? <Link to={`/profile`}>
                             <CardHeader
                                 avatar={
                                     <Avatar aria-label='recipe' className='avatar' src={post.created_by.profile.avatar}>
@@ -83,6 +83,32 @@ export class Posts extends Component {
                                     </div>
                                 ))}
                             /></Link>
+                            : <Link to={`/profile/${post.created_by.id}/`}>
+                            <CardHeader
+                                avatar={
+                                    <Avatar aria-label='recipe' className='avatar' src={post.created_by.profile.avatar}>
+                                    </Avatar>
+                                }
+                                title={post.created_by.name}
+                                subheader={professionConstants.map(proC => (
+                                    <div>
+                                        <p>
+                                            {
+                                                proC.id === post.created_by.profile.profession[0]
+                                                    ? proC.name
+                                                    : null
+                                            }
+                                        </p>
+                                        <p>
+                                            {
+                                                proC.id === post.created_by.profile.profession[1]
+                                                    ? proC.name
+                                                    : null
+                                            }
+                                        </p>
+                                    </div>
+                                ))}
+                            /></Link> }
                             <CardContent id='cardContent'>
                                 <Typography id='textPostContent'>{post.text_body}</Typography>
                                 <img id='ImagePostContent' src={post.image_url} />
@@ -110,6 +136,7 @@ export class Posts extends Component {
 }
 const mapStateToProps = state => ({
     posts: state.posts.posts,
-    isFetching: state.posts.isFetching
+    isFetching: state.posts.isFetching,
+    me: state.auth.me
 })
 export default connect(mapStateToProps, { getPosts, postTextLike, postImageLike, postVideoLike })(Posts)

@@ -28,7 +28,9 @@ class Connect extends React.Component {
         allUsers: PropTypes.array.isRequired,
         fetchingRequests: PropTypes.bool,
         sentConnectRequests: PropTypes.array.isRequired,
-        fetchingSentRequest: PropTypes.bool.isRequired
+        fetchingSentRequest: PropTypes.bool.isRequired,
+        sentRequest: PropTypes.bool,
+        me: PropTypes.array
     }
     onSubmit = e => {
         e.preventDefault();
@@ -41,7 +43,6 @@ class Connect extends React.Component {
             [e.target.name]: e.target.value,
             merged: mergeById(this.props.allUsers, this.props.sentConnectRequests)
         })
-
     };
 
     async componentDidMount() {
@@ -124,8 +125,9 @@ class Connect extends React.Component {
                         {this.props.allUsers.map(user => (
                             <form onSubmit={this.onSubmit}>
                                 <Card key={user.id} id='connection-card'>
-                                    <Link to={`/profile/${user.id}`}>
-                                        <Avatar src={user.profile.avatar} id='music-connect-avatar' />
+                                    {/* <Link to={`/profile/${user.id}`}> */}
+                                    { this.props.me[0].id == user.id ? <Link to={`/profile`}>
+                                    <Avatar src={user.profile.avatar} id='music-connect-avatar' />
                                         <p id='music-connect-heading'>{user.name}</p>
                                         <p id='music-connect-subline'>
                                             {professionConstants.map(proC => (
@@ -149,7 +151,32 @@ class Connect extends React.Component {
                                         ))}</p>
                                         <p id='music-connect-commons'>10 common connections</p>
                                     </Link>
-                                    {user.status === 'pending' ? <button value={user.id} name='requestId' id='music-connect-pendingBtn' onClick={this.onChange}>Pending</button> : <button value={user.id} name='requestId' id='music-connect-button' type='submit' onClick={this.onChange}>Connect</button>}
+                                         : <Link to={`/profile/${user.id}`}>
+                                             <Avatar src={user.profile.avatar} id='music-connect-avatar' />
+                                        <p id='music-connect-heading'>{user.name}</p>
+                                        <p id='music-connect-subline'>
+                                            {professionConstants.map(proC => (
+                                                <p key={proC.id}>
+                                                    {
+                                                        proC.id === user.profile.profession[0]
+                                                            ? proC.name
+                                                            : null
+                                                    }
+                                                </p>
+                                            ))}
+                                        </p>
+                                        <p key={user.id} id='music-connect-location'>{countryConstants.map(counC => (
+                                            <p>
+                                                {
+                                                    counC.id === user.country
+                                                        ? counC.name
+                                                        : null
+                                                }
+                                            </p>
+                                        ))}</p>
+                                        <p id='music-connect-commons'>10 common connections</p>
+                                    </Link> }
+                                    {user.status === 'pending' ? <button value={user.id} disabled name='requestId' id='music-connect-pendingBtn'>Pending</button> : <button value={user.id} name='requestId' id='music-connect-button' type='submit' onClick={this.onChange}>Connect</button>}
                                 </Card>
                             </form>
                         ))}
@@ -168,5 +195,7 @@ const mapStateToProps = state => ({
     requestId: state.connects.requestId,
     fetchingSentRequest: state.connects.fetchingSentRequest,
     sentConnectRequests: state.connects.sentConnectRequests,
+    sentRequest: state.connects.sentRequest,
+    me: state.auth.me
 })
 export default connect(mapStateToProps, { connectionUsers, loadRequests, sendRequest, updateSentRequest,loadUsers })(Connect);

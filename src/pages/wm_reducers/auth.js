@@ -23,7 +23,7 @@ export default function (state = initialState, action) {
         case USER_LOADED:
             return {
                 ...state,
-                // isAuthenticated: true,
+                isAuthenticated: true,
                 // isLoading: false,
                 me: action.payload,
                 users: action.payload[0].profile.url,
